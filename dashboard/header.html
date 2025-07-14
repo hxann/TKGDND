@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cơm Niêu Việt Nam - Header</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Top Search Bar */
+        .top-search-bar {
+            background-color: white;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            gap: 0;
+        }
+
+        .category-dropdown {
+            background: white;
+            border: 1px solid #ddd;
+            border-right: none;
+            padding: 12px 15px;
+            font-size: 14px;
+            color: #666;
+            min-width: 120px;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .search-input-container {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 50px 12px 15px;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+            font-size: 14px;
+            outline: none;
+            color: #999;
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-btn {
+            background: white;
+            border: 1px solid #ddd;
+            border-left: none;
+            padding: 12px 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .search-btn:hover {
+            background: #f8f9fa;
+        }
+
+        /* Main Header */
+        .main-header {
+            background: white;
+            padding: 20px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .reservation-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #D2691E;
+        }
+
+        .reservation-icon {
+            font-size: 24px;
+            color: #D2691E;
+        }
+
+        .reservation-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .reservation-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #D2691E;
+            text-transform: uppercase;
+        }
+
+        .reservation-phone {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* Logo Section */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #D2691E;
+            font-family: serif;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMzAiIGZpbGw9IiNEMjY5MUUiLz4KPHN2ZyB4PSIxNSIgeT0iMTUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Ik0xMiAyQzEzLjEgMiAxNCAyLjkgMTQgNFY2SDE4QzE5LjEgNiAyMCA2LjkgMjAgOFYxOEMyMCAxOS4xIDE5LjEgMjAgMTggMjBINkM0LjkgMjAgNCAE5LjEgNCAE4VjhDNCA2LjkgNC45IDYgNiA2SDEwVjRDMTAgMi45IDEwLjkgMiAxMiAyWk0xMiA0VjZIMTJWNFpNNiA4VjE4SDEyVjhINlpNMTQgOFYxOEgxOFY4SDE0WiIvPgo8L3N2Zz4KPC9zdmc+');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Menu Button */
+        .menu-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background: #c82333;
+        }
+
+        /* Navigation Menu */
+        .nav-menu-section {
+            background: white;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 0;
+            transition: color 0.3s ease;
+            display: block;
+        }
+
+        .nav-menu li:first-child a {
+            color: #dc3545;
+            font-weight: 600;
+        }
+
+        .nav-menu li a:hover {
+            color: #D2691E;
+        }
+
+        .nav-menu li::after {
+            content: '•';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ccc;
+            font-size: 12px;
+        }
+
+        .nav-menu li:last-child::after {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-menu li::after {
+                display: none;
+            }
+            
+            .search-container {
+                max-width: 100%;
+                margin: 0 18px;
+            }
+            
+            .category-dropdown {
+                min-width: 100px;
+                font-size: 12px;
+                padding: 10px 12px;
+            }
+            
+            .search-input {
+                font-size: 12px;
+                padding: 10px 40px 10px 12px;
+            }
+            
+            .search-btn {
+                padding: 10px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .logo-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .reservation-phone {
+                font-size: 16px;
+            }
+            
+            .reservation-label {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Search Bar -->
+    <div class="top-search-bar">
+        <div class="search-container">
+            <select class="category-dropdown">
+                <option>Danh Mục</option>
+                <option>Cơm Niêu</option>
+                <option>Lẩu</option>
+                <option>Nướng</option>
+                <option>Tráng Miệng</option>
+                <option>Đồ Uống</option>
+            </select>
+            <div class="search-input-container">
+                <input type="text" class="search-input" placeholder="Món ngon bạn cần tìm ....">
+            </div>
+            <button class="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <!-- Reservation Section -->
+            <div class="reservation-section">
+                <i class="fas fa-utensils reservation-icon"></i>
+                <div class="reservation-text">
+                    <span class="reservation-label">ĐẶT BÀN</span>
+                    <span class="reservation-phone">094 1855 234</span>
+                </div>
+            </div>
+
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <div class="logo-icon"></div>
+               <img
+               src="/images/logo.png">
+            </div>
+
+            <!-- Menu Button -->
+            <button class="menu-btn">MENU</button>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-menu-section">
+        <ul class="nav-menu">
+            <li><a href="../dashboard/index.html">NHÀ HÀNG CƠM NIÊU</a></li>
+            <li><a href="../dashboard/index.html">GIỚI THIỆU</a></li>
+            <li><a href="../menu/index.html">MENU</a></li>
+            <li><a href="#news">TIN TỨC</a></li>
+            <li><a href="../contact/index.html">LIÊN HỆ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Demo Content -->
+   
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Search functionality
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            const searchValue = document.querySelector('.search-input').value;
+            const category = document.querySelector('.category-dropdown').value;
+            
+            if (searchValue.trim()) {
+                alert(`Tìm kiếm: "${searchValue}" trong danh mục: "${category}"`);
+            } else {
+                alert('Vui lòng nhập từ khóa tìm kiếm');
+            }
+        });
+
+        // Enter key search
+        document.querySelector('.search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-btn').click();
+            }
+        });
+
+        // Menu button click
+        document.querySelector('.menu-btn').addEventListener('click', function() {
+            alert('Mở menu nhà hàng');
+        });
+
+        // Phone number click
+        document.querySelector('.reservation-phone').addEventListener('click', function() {
+            window.location.href = 'tel:0941855234';
+        });
+
+        // Navigation menu active state
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-menu a').forEach(l => {
+                    l.style.color = '#333';
+                    l.style.fontWeight = '500';
+                });
+                
+                // Add active class to clicked link
+                this.style.color = '#dc3545';
+                this.style.fontWeight = '600';
+            });
+        });
+    </script>
+</body>
+</html>

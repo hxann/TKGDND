@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Món Ngon Đặc Biệt - Cơm Niêu Việt Nam</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        /* Special Dishes Section */
+        .special-dishes {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .section-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .tab-item {
+            font-size: 1.1rem;
+            color: #999;
+            cursor: pointer;
+            padding: 10px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-item.active {
+            color: #dc3545;
+            border-bottom-color: #dc3545;
+            font-weight: 600;
+        }
+
+        .tab-item:hover {
+            color: #dc3545;
+        }
+
+        /* Menu Content */
+        .menu-content {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+            margin-top: 40px;
+        }
+
+        .menu-image {
+            flex: 1;
+        }
+
+        .menu-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .menu-list {
+            flex: 1;
+        }
+
+        /* Menu Items */
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background: #f8f9fa;
+            padding-left: 10px;
+            border-radius: 8px;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-image {
+            width: 60px;
+            height: 50px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item-name {
+            font-size: 1rem;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .menu-item-price {
+            font-size: 1rem;
+            color: #dc3545;
+            font-weight: 600;
+        }
+
+        /* Featured Item */
+        .featured-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .featured-info h4 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .featured-price {
+            color: #dc3545;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .call-now-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .call-now-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        /* Daily Dishes Section */
+        .daily-dishes {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .daily-title {
+            font-size: 2.2rem;
+            color: #333;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .daily-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 50px;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card-item:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-label {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #dc3545;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .card-label.news {
+            background: #28a745;
+        }
+
+        .card-content {
+            padding: 25px 20px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: 2px solid #dc3545;
+            color: #dc3545;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .menu-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .category-tabs {
+                gap: 20px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .daily-title {
+                font-size: 1.8rem;
+            }
+            
+            .special-dishes, .daily-dishes {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .featured-item {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .menu-item {
+                gap: 10px;
+            }
+            
+            .menu-item-image {
+                width: 50px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Special Dishes Section -->
+
+    <!-- Daily Dishes Section -->
+    <section class="daily-dishes">
+        <div class="container">
+            <h2 class="daily-title">Món Ngon Mỗi Ngày</h2>
+            <p class="daily-subtitle">Chia sẻ món ăn ngon mỗi ngày cùng Nhà Hàng Cơm Niêu thực khách nhé!</p>
+
+            <!-- Cards Grid -->
+            <div class="cards-grid">
+                <!-- Card 1 -->
+                <div class="card-item">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop" alt="Tin Tức">
+                        <div class="card-label news">Tin Tức</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Tổng hợp top 13 công ty sản xuất gốm sứ tại Tp.HCM</h3>
+                        <p class="card-description">
+                            Nếu bạn đang có ý định tìm kiếm những sản phẩm gốm sứ tính xảo và nhà thuật tự hàng đầu Việt Nam thì Bát Tràng nổi tiếng...
+                        </p>
+                        <button class="read-more-btn">Đọc Thêm</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-item">
+                    <div class="card-image">
+                        <img src="/images/4.png" alt="Canh Xương Cổ Bò">
+                        
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Cách Nấu Canh Xương Cổ Bò Nấu Khoai Sọ – Đế Lam – Bổ Dưỡng</h3>
+                        <p class="card-description">
+                            Canh xương cổ bò nấu khoai sọ là món ăn vừa ngon miệng, bổ dưỡng lại dễ nấu. Với nguyên liệu chính là xương cổ...
+                        </p>
+                        <button class="read-more-btn">Đọc Thêm</button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-item">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=400&h=250&fit=crop" alt="Tim Heo Hầm Thuốc Bắc">
+                        <div class="card-label">Món Ngon Mỗi Ngày</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Nấu món tim heo hầm thuốc Bắc – Đơn giản "Tại Nhà"</h3>
+                        <p class="card-description">
+                            Món tim heo hầm thuốc Bắc là một món ăn được đánh giá cao về giá trị dinh dưỡng và hương vị tuyệt vời, được...
+                        </p>
+                        <button class="read-more-btn">Đọc Thêm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-item').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Here you would typically load different menu items based on the selected tab
+                console.log('Selected tab:', this.textContent);
+            });
+        });
+
+        // Menu item click handler
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const itemName = this.querySelector('.menu-item-name').textContent;
+                const itemPrice = this.querySelector('.menu-item-price').textContent;
+                alert(`Món: ${itemName}\nGiá: ${itemPrice}`);
+            });
+        });
+
+        // Call now button
+        document.querySelector('.call-now-btn').addEventListener('click', function() {
+            window.location.href = 'tel:0941855234';
+        });
+
+        // Read more buttons
+        document.querySelectorAll('.read-more-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cardTitle = this.closest('.card-content').querySelector('.card-title').textContent;
+                alert(`Đọc thêm: ${cardTitle}`);
+            });
+        });
+
+        // Card click handler
+        document.querySelectorAll('.card-item').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.card-title').textContent;
+                console.log('Card clicked:', title);
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animation
+        document.querySelectorAll('.menu-item, .card-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

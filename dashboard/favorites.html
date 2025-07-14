@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thực Khách Ưa Thích - Cơm Niêu Việt Nam</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+
+        /* Menu Favorites Section */
+        .menu-favorites {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        /* Menu Item */
+        .menu-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Menu Image */
+        .menu-image {
+            width: 100px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .menu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover .menu-image img {
+            transform: scale(1.1);
+        }
+
+        /* Menu Content */
+        .menu-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 80px;
+        }
+
+        .menu-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .menu-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        /* Menu Price */
+        .menu-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #dc3545;
+            text-align: right;
+            flex-shrink: 0;
+            margin-left: 15px;
+            align-self: flex-start;
+        }
+
+        /* Special Icons */
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 8px;
+            height: 8px;
+            background: #dc3545;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .menu-item {
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .menu-image {
+                width: 80px;
+                height: 65px;
+            }
+            
+            .menu-name {
+                font-size: 1.1rem;
+            }
+            
+            .menu-description {
+                font-size: 0.85rem;
+            }
+            
+            .menu-price {
+                font-size: 1rem;
+                margin-left: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-favorites {
+                padding: 60px 0;
+            }
+            
+            .section-header {
+                margin-bottom: 40px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .menu-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .menu-image {
+                width: 100%;
+                height: 150px;
+                align-self: center;
+            }
+            
+            .menu-price {
+                text-align: center;
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-item {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-item:nth-child(4) { animation-delay: 0.4s; }
+        .menu-item:nth-child(5) { animation-delay: 0.5s; }
+        .menu-item:nth-child(6) { animation-delay: 0.6s; }
+        .menu-item:nth-child(7) { animation-delay: 0.7s; }
+        .menu-item:nth-child(8) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <!-- Menu Favorites Section -->
+    <section class="menu-favorites">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">Thực Khách Ưa Thích</h2>
+                <p class="section-subtitle">
+                    Mỗi quý khách đến dùng bữa tại Nhà Hàng Cơm Niêu Việt Nam, thường thức ẩm thực miền Bắc giản dị mộc mạc, ngon miệng khó cưỡng.
+                </p>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid">
+                <!-- Menu Item 1 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=200&h=160&fit=crop" alt="Cá Kho Làng Vũ Đại">
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-name">Cá Kho Làng Vũ Đại</h3>
+                        <p class="menu-description">Món Ăn Cá Kho Ở Làng Vũ Đại là một trong những món ăn truyền thống nổi tiếng của ng...</p>
+                    </div>
+                    <div class="menu-price">250.000 đ ~ 1.420.000 đ</div>
+                </div>
+
+                <!-- Menu Item 2 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200&h=160&fit=crop" alt="Salad Cải Mầm Trứng">
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-name">Salad Cải Mầm Trứng</h3>
+                        <p class="menu-description">Món salad cải mầm trứng là một món ăn rất phổ biến trong ẩm thực Việt Nam. Được bi...</p>
+                    </div>
+                    <div class="menu-price">89.000 đ</div>
+                </div>
+
+                <!-- Menu Item 3 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="/images/1.png" alt="Ba Rọi Luộc">
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-name">Ba Rọi Luộc – Cà Pháo/ Tôm Chua (Lớn)</h3>
+                        <p class="menu-description">Ba Rọi Luộc - Cà Pháo/ Tôm Chua (Lớn) là một món ăn truyền thống của Việt Nam, thường...</p>
+                    </div>
+                    <div class="menu-price">160.000 đ</div>
+                </div>
+
+                <!-- Menu Item 4 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=200&h=160&fit=crop" alt="Thịt Heo Tốc">
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-name">Thịt Heo Tốc (Đặt Trước)</h3>
+                        <p class="menu-description">Món thịt heo tốc, hay còn gọi là thịt heo rừng, là một trong những món ăn truyền thống...</p>
+                    </div>
+                    <div class="menu-price">250.000 đ</div>
+                </div>
+
+                <!-- Menu Item 5 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="/images/2.png" alt="Chả Mực Hạ Long">
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-name">Chả Mực Hạ Long</h3>
+                        <p class="menu-description">Để làm chả mực Hạ Long, người ta sử dụng mực tươi ngon, sau đó lấy phần thịt mự...</p>
+                    </div>
+                    <div class="menu-price">150.000 đ</div>
+                </div>
+
+                <!-- Menu Item 6 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=200&h=160&fit=crop" alt="Sườn Xào Chua Ngọt">
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-name">Sườn Xào Chua Ngọt</h3>
+                        <p class="menu-description">Món sườn xào chua ngọt là một món ăn truyền thống của ẩm thực Việt Nam, nổi tiếng ...</p>
+                    </div>
+                    <div class="menu-price">130.000 đ</div>
+                </div>
+
+                <!-- Menu Item 7 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="/images/3.png" alt="Canh Cua Cà Pháo">
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-name">Canh Cua Cà Pháo</h3>
+                        <p class="menu-description">Món Ăn Canh Cua Cà Pháo là một món ăn truyền thống của người Việt Nam, nổi tiếng với...</p>
+                    </div>
+                    <div class="menu-price">110.000 đ</div>
+                </div>
+
+                <!-- Menu Item 8 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=200&h=160&fit=crop" alt="Tái Heo Mầm Nhi">
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-name">Tái Heo Mầm Nhi</h3>
+                        <p class="menu-description">Món Tái Heo Mầm Nhi là một món ăn truyền thống của Việt Nam, được biết đến với hương...</p>
+                    </div>
+                    <div class="menu-price">89.000 đ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu item click handler
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const menuName = this.querySelector('.menu-name').textContent;
+                    const menuPrice = this.querySelector('.menu-price').textContent;
+                    
+                    // Show menu details (could open modal or navigate to detail page)
+                    alert(`Món: ${menuName}\nGiá: ${menuPrice}\n\nClick để xem chi tiết hoặc đặt món!`);
+                });
+
+                // Add cursor pointer
+                item.style.cursor = 'pointer';
+            });
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe menu items for scroll animation
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'all 0.6s ease';
+                observer.observe(item);
+            });
+
+            // Add loading effect for images
+            document.querySelectorAll('.menu-image img').forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+            });
+        });
+
+        // Add price formatting
+        document.querySelectorAll('.menu-price').forEach(price => {
+            const text = price.textContent;
+            if (text.includes('~')) {
+                price.innerHTML = text.replace(/(\d+\.?\d*)/g, '<span style="font-weight: 800;">$1</span>');
+            }
+        });
+    </script>
+</body>
+</html>

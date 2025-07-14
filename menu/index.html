@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Khai Vị - Cơm Niêu Việt Nam</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f8f9fa;
+      }
+
+      /* Menu Navigation Bar */
+      .menu-nav {
+        background: white;
+        padding: 20px 0;
+        border-bottom: 2px solid #e9ecef;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      .nav-items {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: #666;
+        transition: all 0.3s ease;
+        padding: 10px;
+        border-radius: 10px;
+        min-width: 80px;
+      }
+
+      .nav-item:hover {
+        color: #d2691e;
+        background: #f8f9fa;
+        transform: translateY(-2px);
+      }
+
+      .nav-item.active {
+        color: #d2691e;
+        background: #fff5f0;
+      }
+
+      .nav-icon {
+        width: 50px;
+        height: 50px;
+        background: #f8f9fa;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+        font-size: 24px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-item:hover .nav-icon,
+      .nav-item.active .nav-icon {
+        background: #d2691e;
+        color: white;
+      }
+
+      .nav-label {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      /* Main Content */
+      .main-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 15px;
+      }
+
+      /* Section Header */
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .section-subtitle {
+        color: #dc3545;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      .section-description {
+        color: #666;
+        font-size: 1rem;
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* Featured Items */
+      .featured-items {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+
+      .featured-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .featured-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      .featured-image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .featured-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .featured-card:hover .featured-image img {
+        transform: scale(1.1);
+      }
+
+      .favorite-icon {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ccc;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .favorite-icon:hover {
+        color: #dc3545;
+        background: white;
+      }
+
+      .featured-content {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .featured-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .featured-price {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #dc3545;
+      }
+
+      /* Menu List */
+      .menu-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+      }
+
+      .menu-item {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .menu-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      }
+
+      .menu-item-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .menu-item-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .menu-item:hover .menu-item-image img {
+        transform: scale(1.1);
+      }
+
+      .menu-item-info {
+        flex: 1;
+      }
+
+      .menu-item-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      .menu-item-description {
+        font-size: 0.9rem;
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 10px;
+      }
+
+      .menu-item-price {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #dc3545;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .featured-items {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 25px;
+        }
+
+        .menu-list {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .nav-items {
+          gap: 5px;
+        }
+
+        .nav-item {
+          min-width: 70px;
+        }
+
+        .nav-icon {
+          width: 45px;
+          height: 45px;
+          font-size: 20px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .featured-items {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .nav-items {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px;
+        }
+
+        .nav-item {
+          min-width: 60px;
+        }
+
+        .nav-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 18px;
+        }
+
+        .nav-label {
+          font-size: 10px;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .main-content {
+          padding: 30px 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .menu-item {
+          flex-direction: column;
+          text-align: center;
+          gap: 15px;
+        }
+
+        .menu-item-image {
+          width: 100%;
+          height: 150px;
+        }
+      }
+
+      /* Animation */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .featured-card,
+      .menu-item {
+        animation: fadeInUp 0.6s ease forwards;
+      }
+
+      .featured-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .featured-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .featured-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      .menu-item:nth-child(1) {
+        animation-delay: 0.4s;
+      }
+      .menu-item:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      .menu-item:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .menu-item:nth-child(4) {
+        animation-delay: 0.7s;
+      }
+      .menu-item:nth-child(5) {
+        animation-delay: 0.8s;
+      }
+      .menu-item:nth-child(6) {
+        animation-delay: 0.9s;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+
+    <script>
+      fetch("../dashboard/header.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
+   
+    <!-- Menu Navigation -->
+    <nav class="menu-nav">
+      <div class="nav-container">
+        <div class="nav-items">
+          <a href="#" class="nav-item active">
+            <div class="nav-icon">🥗</div>
+            <div class="nav-label">Khai Vị</div>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">🍲</div>
+            <div class="nav-label">Canh</div>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">🥬</div>
+            <div class="nav-label">Món Rau</div>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">🦐</div>
+            <div class="nav-label">Hải Sản</div>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">🐔</div>
+            <div class="nav-label">Gà</div>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">🥩</div>
+            <div class="nav-label">Bò</div>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">🐷</div>
+            <div class="nav-label">Heo</div>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">🍚</div>
+            <div class="nav-label">Cơm</div>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">🍲</div>
+            <div class="nav-label">Lẩu</div>
+          </a>
+          <a href="#" class="nav-item">
+            <div class="nav-icon">➕</div>
+            <div class="nav-label">Thêm</div>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Section Header -->
+      <div class="section-header">
+        <h1 class="section-title">Các Món Khai Vị</h1>
+        <h2 class="section-subtitle">KHAI VỊ</h2>
+        <p class="section-description">
+          Món khai vị là một phần quan trọng trong ẩm thực Việt Nam, thường được
+          phục vụ ở đầu bữa ăn để kích thích vị giác và chuẩn bị tâm trạng cho
+          bữa ăn chính. Mỗi món khai vị thường kết hợp nhiều loại thực ăn nhẹ,
+          tạo ra một sự phong phú về hương vị và cảm nhận cho thực khách.
+        </p>
+      </div>
+
+      <!-- Featured Items -->
+      <div class="featured-items">
+        <div class="featured-card">
+          <div class="featured-image">
+            <img src="/images/tepxaokhe.png" alt="Tép Đồng Xào Khế" />
+            <div class="favorite-icon">
+              <i class="far fa-heart"></i>
+            </div>
+          </div>
+          <div class="featured-content">
+            <h3 class="featured-name">Tép Đồng Xào Khế</h3>
+            <div class="featured-price">89.000 đ</div>
+          </div>
+        </div>
+
+        <div class="featured-card">
+          <div class="featured-image">
+            <img src="/images/chamuc.png" alt="Chả Mực Hạ Long" />
+            <div class="favorite-icon">
+              <i class="far fa-heart"></i>
+            </div>
+          </div>
+          <div class="featured-content">
+            <h3 class="featured-name">Chả Mực Hạ Long</h3>
+            <div class="featured-price">150.000 đ</div>
+          </div>
+        </div>
+
+        <div class="featured-card">
+          <div class="featured-image">
+            <img src="/images/muc.png" alt="Mực Một Nắng Phú Quốc Nướng" />
+            <div class="favorite-icon">
+              <i class="far fa-heart"></i>
+            </div>
+          </div>
+          <div class="featured-content">
+            <h3 class="featured-name">Mực Một Nắng Phú Quốc Nướng</h3>
+            <div class="featured-price">190.000 đ</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu List -->
+      <div class="menu-list">
+        <div class="menu-item">
+          <div class="menu-item-image">
+            <img src="/images/tepxaokhe.png" alt="Tép Đồng Xào Khế" />
+          </div>
+          <div class="menu-item-info">
+            <h4 class="menu-item-name">Tép Đồng Xào Khế</h4>
+            <p class="menu-item-description">
+              Tép mây, chuông ta sẽ cùng nhau tìm hiểu về một món ăn truyền
+              thống đặc biệt của Việt Nam...
+            </p>
+            <div class="menu-item-price">89.000 đ</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-image">
+            <img src="/images/chamuc.png" alt="Chả Mực Hạ Long" />
+          </div>
+          <div class="menu-item-info">
+            <h4 class="menu-item-name">Chả Mực Hạ Long</h4>
+            <p class="menu-item-description">
+              Để làm chả mực Hạ Long, người ta sử dụng mực tươi ngon, sau đó lấy
+              phần thịt mực và...
+            </p>
+            <div class="menu-item-price">150.000 đ</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-image">
+            <img src="/images/muc.png" alt="Mực Một Nắng Phú Quốc Nướng" />
+          </div>
+          <div class="menu-item-info">
+            <h4 class="menu-item-name">Mực Một Nắng Phú Quốc Nướng</h4>
+            <p class="menu-item-description">
+              Mực một nắng Phú Quốc là một trong những đặc sản nổi tiếng của đảo
+              ngọc Phú Quốc...
+            </p>
+            <div class="menu-item-price">190.000 đ</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-image">
+            <img src="/images/chamuc.png" alt="Chả Mực Hạ Long" />
+          </div>
+          <div class="menu-item-info">
+            <h4 class="menu-item-name">Chả Mực Hạ Long</h4>
+            <p class="menu-item-description">
+              Để làm chả mực Hạ Long, người ta sử dụng mực tươi ngon, sau đó lấy
+              phần thịt mực và...
+            </p>
+            <div class="menu-item-price">150.000 đ</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-image">
+            <img src="/images/muc.png" alt="Mực Một Nắng Phú Quốc Nướng" />
+          </div>
+          <div class="menu-item-info">
+            <h4 class="menu-item-name">Mực Một Nắng Phú Quốc Nướng</h4>
+            <p class="menu-item-description">
+              Mực một nắng Phú Quốc là một trong những đặc sản nổi tiếng của đảo
+              ngọc Phú Quốc...
+            </p>
+            <div class="menu-item-price">190.000 đ</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-image">
+            <img src="/images/tepxaokhe.png" alt="Tép Đồng Xào Khế" />
+          </div>
+          <div class="menu-item-info">
+            <h4 class="menu-item-name">Tép Đồng Xào Khế</h4>
+            <p class="menu-item-description">
+              Tép mây, chuông ta sẽ cùng nhau tìm hiểu về một món ăn truyền
+              thống đặc biệt của Việt Nam...
+            </p>
+            <div class="menu-item-price">89.000 đ</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="footer-placeholder"></div>
+
+    <script>
+      fetch("../dashboard/footer.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("footer-placeholder").innerHTML = data;
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Navigation functionality
+      document.querySelectorAll(".nav-item").forEach((item) => {
+        item.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          // Remove active class from all nav items
+          document
+            .querySelectorAll(".nav-item")
+            .forEach((nav) => nav.classList.remove("active"));
+
+          // Add active class to clicked item
+          this.classList.add("active");
+
+          const category = this.querySelector(".nav-label").textContent;
+          console.log(`Switched to category: ${category}`);
+
+          // Here you would typically load different menu items based on category
+        });
+      });
+
+      // Featured card interactions
+      document.querySelectorAll(".featured-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          const itemName = this.querySelector(".featured-name").textContent;
+          const itemPrice = this.querySelector(".featured-price").textContent;
+          alert(`Chi tiết món: ${itemName}\nGiá: ${itemPrice}`);
+        });
+      });
+
+      // Menu item interactions
+      document.querySelectorAll(".menu-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          const itemName = this.querySelector(".menu-item-name").textContent;
+          const itemPrice = this.querySelector(".menu-item-price").textContent;
+          alert(`Chi tiết món: ${itemName}\nGiá: ${itemPrice}`);
+        });
+      });
+
+      // Favorite icon functionality
+      document.querySelectorAll(".favorite-icon").forEach((icon) => {
+        icon.addEventListener("click", function (e) {
+          e.stopPropagation();
+
+          const heartIcon = this.querySelector("i");
+          if (heartIcon.classList.contains("far")) {
+            heartIcon.classList.remove("far");
+            heartIcon.classList.add("fas");
+            this.style.color = "#dc3545";
+          } else {
+            heartIcon.classList.remove("fas");
+            heartIcon.classList.add("far");
+            this.style.color = "#ccc";
+          }
+        });
+      });
+
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements for scroll animation
+      document.querySelectorAll(".featured-card, .menu-item").forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(30px)";
+        el.style.transition = "all 0.6s ease";
+        observer.observe(el);
+      });
+
+      // Add to cart functionality (placeholder)
+      function addToCart(itemName, price) {
+        console.log(`Added to cart: ${itemName} - ${price}`);
+        // Here you would implement actual cart functionality
+      }
+
+      // Search functionality (placeholder)
+      function searchMenu(query) {
+        console.log(`Searching for: ${query}`);
+        // Here you would implement search functionality
+      }
+    </script>
+  </body>
+</html>

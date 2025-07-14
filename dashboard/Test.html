@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tư Vấn Đặt Bàn & Món Ăn Phổ Biến - Cơm Niêu Việt Nam</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Reservation Section */
+        .reservation-section {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1200&h=600&fit=crop') center/cover;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reservation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="pattern" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0 0h20v20H0z" fill="none"/><path d="M10 0v20M0 10h20" stroke="%23f0f0f0" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23pattern)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .reservation-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            gap: 60px;
+        }
+
+        .reservation-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .reservation-image {
+            flex: 1;
+            text-align: right;
+        }
+
+        .reservation-subtitle {
+            color: #dc3545;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .reservation-title {
+            font-size: 2.8rem;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .reservation-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .call-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .call-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+            color: white;
+        }
+
+        .reservation-food-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Popular Dishes Section */
+        .popular-dishes {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Dishes Grid */
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .dish-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .dish-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .dish-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .dish-card:hover .dish-image img {
+            transform: scale(1.1);
+        }
+
+        .dish-content {
+            padding: 25px 20px;
+        }
+
+        .dish-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #D2691E;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .dish-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .dishes-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            .reservation-content {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .reservation-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dishes-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .reservation-section {
+                padding: 60px 0;
+            }
+            
+            .reservation-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .popular-dishes {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .reservation-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .call-btn {
+                padding: 12px 25px;
+                font-size: 14px;
+            }
+            
+            .dish-content {
+                padding: 20px 15px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dish-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .dish-card:nth-child(1) { animation-delay: 0.1s; }
+        .dish-card:nth-child(2) { animation-delay: 0.2s; }
+        .dish-card:nth-child(3) { animation-delay: 0.3s; }
+        .dish-card:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Reservation Section -->
+    <section class="reservation-section">
+        <div class="reservation-content">
+            <!-- Left Content -->
+            <div class="reservation-text">
+                <p class="reservation-subtitle">ĐĂNG KÝ NGAY ĐỂ NHẬN ƯU ĐÃI:</p>
+                <h1 class="reservation-title">TƯ VẤN ĐẶT BÀN:</h1>
+                <p class="reservation-description">
+                    Nằm ở gần sân bay tại thành phố Hồ Chí Minh, nhà hàng Cơm Niêu Việt Nam được thiết kế sang trọng với không gian rộng rãi và thoải mái, mang lại cảm giác thân thiện và gần gũi. Với sự kết hợp hoàn hảo giữa truyền thống và hiện đại, chúng tôi mang đến một trải nghiệm ẩm thực độc đáo và tinh tế.
+                </p>
+                <a href="tel:0941855234" class="call-btn">
+                    <i class="fas fa-phone"></i> GỌI NGAY: 094 1855 234
+                </a>
+            </div>
+            
+            <!-- Right Image -->
+            <div class="reservation-image">
+                <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&h=400&fit=crop" 
+                     alt="Cơm Niêu Truyền Thống" 
+                     class="reservation-food-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Dishes Section -->
+    <section class="popular-dishes">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">MÓN ĂN PHỔ BIẾN</h2>
+                <p class="section-description">
+                    Thực đơn của chúng tôi đa dạng với những món ăn đặc trưng như cơm niêu, canh gà chiên nước mắm, cá kho tộ, bò kho, và nhiều món khác đều được chế biến từ những nguyên liệu tươi ngon nhất. Chúng tôi cam kết mang đến khẩu vị tuyệt vời và hương vị đích thực của ẩm thực miền Nam.
+                </p>
+            </div>
+
+            <!-- Dishes Grid -->
+            <div class="dishes-grid">
+                <!-- Dish 1 -->
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="/images/1.png" alt="Ba Rọi Heo Gia Lai luộc">
+                    </div>
+                    <div class="dish-content">
+                        <h3 class="dish-name">Ba Rọi Heo Gia Lai luộc</h3>
+                        <p class="dish-description">
+                            Thịt ba rọi luộc không chỉ ngon miệng mà còn giàu chất dinh dưỡng. Thịt lợn cung cấp protein, chất béo và các loại khoáng chất cần thiết cho cơ thể. Và tạo cảnh giác ngon miệng hơn rất phổ biến tại Nhà Hàng Cơm Niêu Việt Nam.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dish 2 -->
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="/images/3.png" alt="Canh Cua Cà Pháo">
+                    </div>
+                    <div class="dish-content">
+                        <h3 class="dish-name">Canh Cua Cà Pháo</h3>
+                        <p class="dish-description">
+                            Canh Cua thường được ăn kèm với cơm trắng nóng hổi và được trang trí bằng rau thơm như ngò gai và rau mùi. Hương vị đặc trưng của Canh Cua không chỉ đến từ thịt cua ngọt ngon mà còn từ hương vị tự nhiên của rau củ và nước luộc cua.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dish 3 -->
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=300&h=200&fit=crop" alt="Cá Kho Làng Vũ Đại">
+                    </div>
+                    <div class="dish-content">
+                        <h3 class="dish-name">Cá Kho Làng Vũ Đại</h3>
+                        <p class="dish-description">
+                            Mùi thơm nồng của cá kho khiến ai cũng phải ngây và muốn thưởng thức ngay lập tức. Món ăn này thường được dùng kèm với cơm trắng, tạo nên một bữa ăn truyền thống ngon miệng và đầy dinh dưỡng.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dish 4 -->
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=200&fit=crop" alt="Lẩu Gà Lá Giang">
+                    </div>
+                    <div class="dish-content">
+                        <h3 class="dish-name">Lẩu Gà Lá Giang</h3>
+                        <p class="dish-description">
+                            Lẩu gà nấu lá giang tại Nhà Hàng Cơm Niêu Việt Nam là một món ăn dân dã nhưng vô cùng yêu thích. Với nguyên liệu chính là thịt gà và các loại lá giang thơm đến một hương vị thanh mát, ngọt ngào và vô cùng bổ dưỡng.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dish card click handler
+            document.querySelectorAll('.dish-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const dishName = this.querySelector('.dish-name').textContent;
+                    alert(`Xem chi tiết món: ${dishName}`);
+                });
+            });
+
+            // Call button click tracking
+            document.querySelector('.call-btn').addEventListener('click', function() {
+                // Track call button click
+                console.log('Call button clicked');
+            });
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.dish-card, .reservation-text, .reservation-image').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Add floating animation to reservation image
+            const reservationImage = document.querySelector('.reservation-food-image');
+            if (reservationImage) {
+                setInterval(() => {
+                    reservationImage.style.transform = 'translateY(-5px)';
+                    setTimeout(() => {
+                        reservationImage.style.transform = 'translateY(0px)';
+                    }, 1000);
+                }, 3000);
+            }
+        });
+
+        // Add parallax effect to reservation section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const reservationSection = document.querySelector('.reservation-section');
+            
+            if (reservationSection) {
+                const rate = scrolled * -0.5;
+                reservationSection.style.transform = `translateY(${rate}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
