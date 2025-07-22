@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đặt bàn thành công</title>
+  <link rel="stylesheet" href="../css/datbanngay.css" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: url('../images/banner.png') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 80px auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #CD853F !important; 
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #444;
+    }
+
+    .info {
+      background-color: #fff9f1;
+      border: 1px solid #ffd7a2;
+      border-radius: 10px;
+      text-align: left;
+      margin-top: 30px;
+      padding: 20px 30px;
+      font-size: 16px;
+    }
+
+    .info p {
+      margin: 10px 0;
+    }
+
+    .info strong {
+      color: #444;
+    }
+
+    .info ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .info li {
+      margin-bottom: 6px;
+    }
+
+    a.back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      background: #d67d00;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    a.back-btn:hover {
+      background-color: #b36400;
+    }
+
+    .info-icon {
+      margin-right: 6px;
+      color: #d67d00;
+    }
+
+    h4 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎉 Đặt bàn thành công!</h1>
+    <p class="subtitle">Chúng tôi sẽ liên hệ xác nhận trong vòng 15 phút.</p>
+
+    <div class="info" id="bookingInfo">
+      <!-- Nội dung sẽ được render bằng JS -->
+    </div>
+
+    <a class="back-btn" href="datbanngay.html">⬅ Quay lại trang đặt bàn</a>
+  </div>
+
+  <!-- Script lấy dữ liệu từ localStorage -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const data = JSON.parse(localStorage.getItem("bookingData"));
+      const infoContainer = document.getElementById("bookingInfo");
+
+      if (data) {
+        let dishesHtml = '';
+        if (data.selectedDishes && data.selectedDishes.length > 0) {
+          dishesHtml = `
+            <h4>🍽️ Món đã đặt:</h4>
+            <ul>
+              ${data.selectedDishes.map(dish => `
+                <li>${dish.name} x ${dish.quantity} (${dish.price})</li>
+              `).join('')}
+            </ul>
+          `;
+        }
+
+        infoContainer.innerHTML = `
+          <p><span class="info-icon">👤</span><strong>Họ tên:</strong> ${data.customerName}</p>
+          <p><span class="info-icon">📞</span><strong>Số điện thoại:</strong> ${data.phone}</p>
+          <p><span class="info-icon">📅</span><strong>Ngày đặt:</strong> ${data.date}</p>
+          <p><span class="info-icon">⏰</span><strong>Giờ:</strong> ${data.time}</p>
+          <p><span class="info-icon">👥</span><strong>Số khách:</strong> ${data.guests}</p>
+          <p><span class="info-icon">🪑</span><strong>Loại bàn:</strong> ${data.tableType}</p>
+          ${dishesHtml}
+          <p><span class="info-icon">💰</span><strong>Tổng tiền:</strong> ${data.totalAmount}</p>
+        `;
+      } else {
+        infoContainer.innerHTML = `<p>Không tìm thấy thông tin đặt bàn.</p>`;
+      }
+    });
+  </script>
+</body>
+</html>
