@@ -1,433 +1,813 @@
-<!DOCTYPE html>
-<html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cơm Niêu Việt Nam - Header</title>
+<!-- Header Component - No HTML/HEAD/BODY tags -->
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
-      }
-
-      .top-search-bar {
-        background-color: white;
-        padding: 15px 0;
-        border-bottom: 1px solid #e9ecef;
-      }
-
-      .search-container {
-        display: flex;
-        align-items: center;
-        max-width: 800px;
-        margin: 0 auto;
-        gap: 0;
-      }
-
-      .category-dropdown {
-        background: white;
-        border: 1px solid #ddd;
-        border-right: none;
-        padding: 12px 15px;
-        font-size: 14px;
-        color: #666;
-        min-width: 120px;
-        border-radius: 4px 0 0 4px;
-        outline: none;
-        cursor: pointer;
-      }
-
-      .search-input-container {
-        flex: 1;
-        position: relative;
-      }
-
-      .search-input {
-        width: 100%;
-        padding: 12px 50px 12px 15px;
-        border: 1px solid #ddd;
-        border-left: none;
-        border-right: none;
-        font-size: 14px;
-        outline: none;
-        color: #999;
-      }
-
-      .search-input::placeholder {
-        color: #999;
-      }
-
-      .search-btn {
-        background: white;
-        border: 1px solid #ddd;
-        border-left: none;
-        padding: 12px 15px;
-        border-radius: 0 4px 4px 0;
-        cursor: pointer;
-        color: #666;
-      }
-
-      .search-btn:hover {
-        background: #f8f9fa;
-      }
-
-      .main-header {
-        background: white;
-        padding: 20px 0;
-        border-bottom: 1px solid #e9ecef;
-        position: relative;
-      }
-
-      .header-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
-      .reservation-section {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: #d2691e;
-      }
-
-      .reservation-icon {
-        font-size: 24px;
-        color: #d2691e;
-      }
-
-      .reservation-text {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .reservation-label {
-        font-size: 12px;
-        font-weight: 600;
-        color: #d2691e;
-        text-transform: uppercase;
-      }
-
-      .reservation-phone {
-        font-size: 18px;
-        font-weight: 700;
-        color: #333;
-        cursor: pointer;
-      }
-
-      .logo-section {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
-
-      .logo-text {
-        font-size: 28px;
-        font-weight: 700;
-        color: #d2691e;
-        font-family: serif;
-      }
-
-      .logo-icon {
-        width: 60px;
-        height: 60px;
-        background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIzMCIgZmlsbD0iI0QyNjkxRSIvPjxzdmcgeD0iMTUiIHk9IjE1IiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyQzEzLjEgMiAxNCAyLjkgMTQgNFY2SDE4QzE5LjEgNiAyMCA2LjkgMjAgOFYxOEMyMCAxOS4xIDE5LjEgMjAgMTggMjBINkM0LjkgMjAgNCAE5LjEgNCAE4VjhDNCA2LjkgNC45IDYgNiA2SDEwVjRDMTAgMi45IDEwLjkgMiAxMiAyWk0xMiA0VjZIMTJWNFpNNiA4VjE4SDEyVjhINlpNMTQgOFYxOEgxOFY4SDE0WiIvPjwvc3ZnPjwvc3ZnPg==");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-
-      .logo-section img {
-        max-height: 60px;
-        width: auto;
-      }
-
-      .menu-btn {
-        background: #dc3545;
-        color: white;
-        border: none;
-        padding: 12px 25px;
-        font-size: 16px;
-        font-weight: 600;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-      }
-
-      .menu-btn:hover {
-        background: #c82333;
-      }
-
-      .nav-menu-section {
-        background: white;
-        padding: 15px 0;
-        border-bottom: 1px solid #e9ecef;
-      }
-
-      .nav-menu {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        list-style: none;
-        margin: 0 auto;
-        padding: 0;
-        gap: 50px;
-        max-width: 1200px;
-      }
-
-      .nav-menu li {
-        position: relative;
-      }
-
-      .nav-menu li a {
-        color: #333;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 500;
-        padding: 10px 0;
-        transition: color 0.3s ease;
-        display: block;
-      }
-
-      .nav-menu li:first-child a {
-        color: #dc3545;
-        font-weight: 600;
-      }
-
-      .nav-menu li a:hover {
-        color: #d2691e;
-      }
-
-      .nav-menu li::after {
-        content: "•";
-        position: absolute;
-        right: -25px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #ccc;
-        font-size: 12px;
-      }
-
-      .nav-menu li:last-child::after {
-        display: none;
-      }
-
-      .nav-toggle {
-        background: none;
-        border: none;
-        font-size: 24px;
-        color: #d2691e;
-        cursor: pointer;
-        display: none;
-      }
-
-      @media (max-width: 768px) {
-        .header-content {
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .nav-menu {
-          flex-direction: column;
-          gap: 15px;
-          display: none;
-        }
-
-        .nav-menu.active {
-          display: flex;
-        }
-
-        .nav-menu li::after {
-          display: none;
-        }
-
-        .search-container {
-          max-width: 100%;
-          margin: 0 18px;
-        }
-
-        .category-dropdown {
-          min-width: 100px;
-          font-size: 12px;
-          padding: 10px 12px;
-        }
-
-        .search-input {
-          font-size: 12px;
-          padding: 10px 40px 10px 12px;
-        }
-
-        .search-btn {
-          padding: 10px 12px;
-        }
-
-        .nav-toggle {
-          display: block;
-          position: absolute;
-          right: 20px;
-          top: 20px;
-        }
-      }
-      .nav-menu a.active {
-        color: #e53935; /* Màu đỏ hoặc màu bạn muốn */
-        font-weight: bold;
-        border-bottom: 2px solid #e53935;
-      }
-
-      @media (max-width: 480px) {
-        .logo-text {
-          font-size: 20px;
-        }
-
-        .logo-icon {
-          width: 85px;
-          height: 85px;
-        }
-
-        .reservation-phone {
-          font-size: 16px;
-        }
-
-        .reservation-label {
-          font-size: 10px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Top Search Bar -->
-    <div class="top-search-bar">
-      <div class="search-container">
-        <select class="category-dropdown">
-          <option>Danh Mục</option>
-          <option>Cơm Niêu</option>
-          <option>Lẩu</option>
-          <option>Nướng</option>
-          <option>Tráng Miệng</option>
-          <option>Đồ Uống</option>
+<!-- Top Search Bar -->
+<div class="header-top-search-bar">
+    <div class="header-search-container">
+        <select class="header-category-dropdown">
+            <option>Danh Mục</option>
+            <option>Cơm Niêu</option>
+            <option>Lẩu</option>
+            <option>Nướng</option>
+            <option>Tráng Miệng</option>
+            <option>Đồ Uống</option>
         </select>
-        <div class="search-input-container">
-          <input
-            type="text"
-            class="search-input"
-            placeholder="Món ngon bạn cần tìm ...."
-          />
+        <div class="header-search-input-container">
+            <input type="text" class="header-search-input" placeholder="Món ngon bạn cần tìm ...." />
         </div>
-        <button class="search-btn">
-          <i class="fas fa-search"></i>
+        <button class="header-search-btn">
+            <i class="fas fa-search"></i>
         </button>
-      </div>
     </div>
+</div>
 
-    <!-- Main Header -->
-    <header class="main-header">
-      <div class="header-content">
+<!-- Main Header -->
+<header class="header-main-header">
+    <div class="header-content">
         <!-- Reservation Section -->
-        <div class="reservation-section">
-          <i class="fas fa-utensils reservation-icon"></i>
-          <div class="reservation-text">
-            <span class="reservation-label">ĐẶT BÀN</span>
-            <span class="reservation-phone">094 1855 234</span>
-          </div>
+        <div class="header-reservation-section">
+            <i class="fas fa-utensils header-reservation-icon"></i>
+            <div class="header-reservation-text">
+                <span class="header-reservation-label">ĐẶT BÀN</span>
+                <span class="header-reservation-phone">094 1855 234</span>
+            </div>
         </div>
 
-        <!-- Logo Section -->
-        <div class="logo-section">
-          <a href="/dashboard/index.html">
-            <img src="/images/logo.png" alt="Logo" style="max-height: 100px" />
-          </a>
+        <!-- Logo Section - Always centered -->
+        <div class="header-logo-section">
+            <a href="/dashboard/index.html">
+                <img src="/images/logo.png" alt="Cơm Niêu Việt Nam" />
+            </a>
         </div>
 
         <!-- Menu Button -->
-       <a href="/order/datbanngay.html" class="menu-btn">Đặt Bàn</a>
-      </div>
+        <a href="/order/datbanngay.html" class="header-menu-btn">Đặt Bàn</a>
+    </div>
+</header>
 
-      <!-- Toggle nav on mobile -->
-      <button class="nav-toggle d-md-none"><i class="fas fa-bars"></i></button>
-    </header>
+<!-- Navigation Menu -->
+<nav class="header-nav-menu-section">
+    <div class="header-nav-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="header-nav-toggle" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+            <span class="header-toggle-text">MENU</span>
+        </button>
+        
+        <!-- Navigation Menu - Always centered on desktop -->
+        <ul class="header-nav-menu" id="mobileNavMenu">
+            <li><a href="/dashboard/index.html" class="header-nav-link">NHÀ HÀNG CƠM NIÊU</a></li>
+            <li><a href="/dashboard/index.html" class="header-nav-link">GIỚI THIỆU</a></li>
+            <li><a href="/menu/index.html" class="header-nav-link">MENU</a></li>
+            <li><a href="/news/index.html" class="header-nav-link">TIN TỨC</a></li>
+            <li><a href="/contact/index.html" class="header-nav-link">LIÊN HỆ</a></li>
+        </ul>
+    </div>
+</nav>
 
-    <!-- Navigation Menu -->
-    <nav class="nav-menu-section">
-      <ul class="nav-menu">
-        <li><a href="/dashboard/index.html">NHÀ HÀNG CƠM NIÊU</a></li>
-        <li><a href="/dashboard/index.html">GIỚI THIỆU</a></li>
-        <li><a href="/menu/index.html">MENU</a></li>
-        <li><a href="/news/index.html">TIN TỨC</a></li>
-        <li><a href="/contact/index.html">LIÊN HỆ</a></li>
-      </ul>
-    </nav>
+<!-- Mobile Menu Overlay -->
+<div class="header-nav-overlay" id="mobileMenuOverlay"></div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+/* Header Component Styles - All prefixed with 'header-' to avoid conflicts */
 
-    <script>
-      // Search
-      document
-        .querySelector(".search-btn")
-        .addEventListener("click", function () {
-          const searchValue = document.querySelector(".search-input").value;
-          const category = document.querySelector(".category-dropdown").value;
-          if (searchValue.trim()) {
-            alert(`Tìm kiếm: "${searchValue}" trong danh mục: "${category}"`);
-          } else {
-            alert("Vui lòng nhập từ khóa tìm kiếm");
-          }
-        });
+/* Top Search Bar */
+.header-top-search-bar {
+    background-color: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #e9ecef;
+}
 
-      document
-        .querySelector(".search-input")
-        .addEventListener("keypress", function (e) {
-          if (e.key === "Enter") {
-            document.querySelector(".search-btn").click();
-          }
-        });
+.header-search-container {
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 0;
+    padding: 0 15px;
+}
 
-      // Click đặt bàn
-      document
-        .querySelector(".reservation-phone")
-        .addEventListener("click", function () {
-          window.location.href = "tel:0941855234";
-        });
+.header-category-dropdown {
+    background: white;
+    border: 1px solid #ddd;
+    border-right: none;
+    padding: 12px 15px;
+    font-size: 14px;
+    color: #666;
+    min-width: 120px;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-      // Toggle mobile menu
-      document
-        .querySelector(".nav-toggle")
-        .addEventListener("click", function () {
-          document.querySelector(".nav-menu").classList.toggle("active");
-        });
+.header-category-dropdown:hover {
+    border-color: #d2691e;
+}
 
-      // Highlight active menu
+.header-search-input-container {
+    flex: 1;
+    position: relative;
+}
 
-      const currentPath = window.location.pathname;
-      const menuLinks = document.querySelectorAll(".nav-menu a");
+.header-search-input {
+    width: 100%;
+    padding: 12px 50px 12px 15px;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+    font-size: 14px;
+    outline: none;
+    color: #333;
+    transition: all 0.3s ease;
+}
 
-      menuLinks.forEach((link) => {
-        const linkPath = new URL(link.href).pathname;
-        if (currentPath === linkPath) {
-          link.classList.add("active");
+.header-search-input::placeholder {
+    color: #999;
+}
+
+.header-search-input:focus {
+    border-color: #d2691e;
+    box-shadow: 0 0 0 2px rgba(210, 105, 30, 0.1);
+}
+
+.header-search-btn {
+    background: white;
+    border: 1px solid #ddd;
+    border-left: none;
+    padding: 12px 15px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.header-search-btn:hover {
+    background: #f8f9fa;
+    color: #d2691e;
+    border-color: #d2691e;
+}
+
+/* Main Header */
+.header-main-header {
+    background: white;
+    padding: 20px 0;
+    border-bottom: 1px solid #e9ecef;
+    position: relative;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+}
+
+.header-reservation-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #d2691e;
+    width: 200px;
+    justify-content: flex-start;
+}
+
+.header-reservation-icon {
+    font-size: 24px;
+    color: #d2691e;
+    transition: all 0.3s ease;
+}
+
+.header-reservation-icon:hover {
+    transform: scale(1.1);
+}
+
+.header-reservation-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-reservation-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #d2691e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.header-reservation-phone {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header-reservation-phone:hover {
+    color: #d2691e;
+    transform: scale(1.05);
+}
+
+.header-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.header-logo-section a {
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.header-logo-section a:hover {
+    transform: scale(1.05);
+}
+
+.header-logo-section img {
+    max-height: 60px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.header-menu-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    justify-content: flex-end;
+}
+
+.header-menu-btn:hover {
+    background: #c82333;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+/* Navigation Menu - ALWAYS CENTERED */
+.header-nav-menu-section {
+    background: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #e9ecef;
+    position: relative;
+}
+
+.header-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-nav-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 50px;
+    position: relative;
+}
+
+.header-nav-menu li {
+    position: relative;
+}
+
+.header-nav-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+    display: block;
+    position: relative;
+}
+
+.header-nav-menu li:first-child .header-nav-link {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.header-nav-link:hover {
+    color: #d2691e;
+    transform: translateY(-2px);
+}
+
+.header-nav-link.header-active {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.header-nav-link.header-active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #dc3545;
+    border-radius: 1px;
+}
+
+.header-nav-menu li::after {
+    content: "•";
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ccc;
+    font-size: 12px;
+}
+
+.header-nav-menu li:last-child::after {
+    display: none;
+}
+
+/* Mobile Menu Toggle */
+.header-nav-toggle {
+    background: #dc3545;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+    transition: all 0.3s ease;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(220, 53, 69, 0.3);
+}
+
+.header-nav-toggle:hover {
+    background: #c82333;
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+}
+
+.header-nav-toggle i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.header-toggle-text {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Mobile Menu Overlay */
+.header-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.header-nav-overlay.header-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .header-nav-menu {
+        gap: 30px;
+    }
+    
+    .header-nav-menu li::after {
+        right: -15px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header adjustments */
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .header-logo-section {
+        position: static;
+        transform: none;
+        order: 2;
+    }
+    
+    .header-reservation-section {
+        order: 1;
+        width: auto;
+    }
+    
+    .header-menu-btn {
+        order: 3;
+        padding: 10px 20px;
+        font-size: 14px;
+        width: auto;
+    }
+    
+    /* Navigation Menu Mobile - SLIDE FROM LEFT */
+    .header-nav-toggle {
+        display: flex !important;
+        align-items: center;
+        left: 15px;
+    }
+    
+    .header-nav-menu {
+        position: fixed !important;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        gap: 0;
+        padding: 80px 0 20px 0;
+        box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+        transition: left 0.4s ease;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+    
+    .header-nav-menu.header-active {
+        left: 0 !important;
+    }
+    
+    .header-nav-menu li {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.3s ease;
+    }
+    
+    .header-nav-menu.header-active li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    .header-nav-menu li:last-child {
+        border-bottom: none;
+    }
+    
+    .header-nav-link {
+        padding: 18px 25px !important;
+        display: block;
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+        font-size: 16px !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+    }
+    
+    .header-nav-link:hover {
+        background: rgba(210, 105, 30, 0.1) !important;
+        color: #d2691e !important;
+        transform: none !important;
+        border-left-color: #d2691e;
+        padding-left: 30px !important;
+    }
+    
+    .header-nav-link.header-active {
+        background: rgba(220, 53, 69, 0.1);
+        color: #dc3545 !important;
+        border-left-color: #dc3545;
+        font-weight: 600;
+    }
+    
+    .header-nav-menu li::after {
+        display: none;
+    }
+    
+    /* Close button in mobile menu */
+    .header-nav-menu::before {
+        content: '✕';
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        color: #dc3545;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(220, 53, 69, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .header-nav-menu::before:hover {
+        background: rgba(220, 53, 69, 0.2);
+        transform: scale(1.1);
+    }
+    
+    /* Search bar mobile */
+    .header-search-container {
+        max-width: 100%;
+        margin: 0 15px;
+    }
+    
+    .header-category-dropdown {
+        min-width: 100px;
+        font-size: 12px;
+        padding: 10px 12px;
+    }
+    
+    .header-search-input {
+        font-size: 12px;
+        padding: 10px 40px 10px 12px;
+    }
+    
+    .header-search-btn {
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-logo-section img {
+        max-height: 50px;
+    }
+    
+    .header-reservation-phone {
+        font-size: 16px;
+    }
+    
+    .header-reservation-label {
+        font-size: 10px;
+    }
+    
+    .header-reservation-icon {
+        font-size: 20px;
+    }
+    
+    .header-menu-btn {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+    
+    .header-nav-menu {
+        width: 260px;
+    }
+    
+    .header-nav-toggle {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .header-nav-toggle i {
+        font-size: 16px;
+        margin-right: 6px;
+    }
+    
+    .header-toggle-text {
+        font-size: 12px;
+    }
+}
+
+/* Animation for mobile menu items */
+.header-nav-menu.header-active li:nth-child(1) { 
+    transition-delay: 0.1s; 
+}
+.header-nav-menu.header-active li:nth-child(2) { 
+    transition-delay: 0.2s; 
+}
+.header-nav-menu.header-active li:nth-child(3) { 
+    transition-delay: 0.3s; 
+}
+.header-nav-menu.header-active li:nth-child(4) { 
+    transition-delay: 0.4s; 
+}
+.header-nav-menu.header-active li:nth-child(5) { 
+    transition-delay: 0.5s; 
+}
+</style>
+
+<script>
+// Header Component JavaScript - FIXED Mobile Menu with Left Slide
+(function() {
+    'use strict';
+    
+    // Wait for component to be loaded
+    setTimeout(function() {
+        console.log('🚀 Loading header component...');
+        
+        // Search functionality
+        const searchBtn = document.querySelector(".header-search-btn");
+        const searchInput = document.querySelector(".header-search-input");
+        const categoryDropdown = document.querySelector(".header-category-dropdown");
+        
+        if (searchBtn && searchInput && categoryDropdown) {
+            searchBtn.addEventListener("click", function () {
+                const searchValue = searchInput.value;
+                const category = categoryDropdown.value;
+                
+                if (searchValue.trim()) {
+                    const icon = this.querySelector("i");
+                    const originalClass = icon.className;
+                    icon.className = "fas fa-spinner fa-spin";
+                    
+                    setTimeout(() => {
+                        icon.className = originalClass;
+                        alert(`🔍 Tìm kiếm: "${searchValue}" trong danh mục: "${category}"`);
+                    }, 1000);
+                } else {
+                    alert("⚠️ Vui lòng nhập từ khóa tìm kiếm");
+                }
+            });
+            
+            searchInput.addEventListener("keypress", function (e) {
+                if (e.key === "Enter") {
+                    searchBtn.click();
+                }
+            });
         }
-      });
-    </script>
-  </body>
-</html>
+        
+        // Phone click to call
+        const reservationPhone = document.querySelector(".header-reservation-phone");
+        if (reservationPhone) {
+            reservationPhone.addEventListener("click", function () {
+                window.location.href = "tel:0941855234";
+            });
+        }
+        
+        // Mobile menu toggle - COMPLETELY REWRITTEN
+        const navToggle = document.getElementById("mobileMenuToggle");
+        const navMenu = document.getElementById("mobileNavMenu");
+        const navOverlay = document.getElementById("mobileMenuOverlay");
+        
+        console.log('🔍 Mobile menu elements:', {
+            toggle: !!navToggle,
+            menu: !!navMenu,
+            overlay: !!navOverlay
+        });
+        
+        if (navToggle && navMenu && navOverlay) {
+            let isMenuOpen = false;
+            
+            function openMobileMenu() {
+                console.log('📱 Opening mobile menu...');
+                isMenuOpen = true;
+                navMenu.classList.add("header-active");
+                navOverlay.classList.add("header-active");
+                document.body.style.overflow = "hidden";
+                
+                // Change toggle button
+                const icon = navToggle.querySelector("i");
+                const text = navToggle.querySelector(".header-toggle-text");
+                icon.className = "fas fa-times";
+                text.textContent = "ĐÓNG";
+                
+                console.log('✅ Menu opened');
+            }
+            
+            function closeMobileMenu() {
+                console.log('📱 Closing mobile menu...');
+                isMenuOpen = false;
+                navMenu.classList.remove("header-active");
+                navOverlay.classList.remove("header-active");
+                document.body.style.overflow = "";
+                
+                // Reset toggle button
+                const icon = navToggle.querySelector("i");
+                const text = navToggle.querySelector(".header-toggle-text");
+                icon.className = "fas fa-bars";
+                text.textContent = "MENU";
+                
+                console.log('❌ Menu closed');
+            }
+            
+            function toggleMobileMenu() {
+                if (isMenuOpen) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            }
+            
+            // Toggle button click
+            navToggle.addEventListener("click", function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('🖱️ Toggle button clicked');
+                toggleMobileMenu();
+            });
+            
+            // Overlay click to close
+            navOverlay.addEventListener("click", function(e) {
+                console.log('🖱️ Overlay clicked');
+                closeMobileMenu();
+            });
+            
+            // Close button (X) in menu
+            navMenu.addEventListener("click", function(e) {
+                if (e.target === navMenu && e.clientX > navMenu.offsetWidth - 60 && e.clientY < 60) {
+                    console.log('🖱️ Close button clicked');
+                    closeMobileMenu();
+                }
+            });
+            
+            // Menu item clicks
+            document.querySelectorAll(".header-nav-link").forEach(link => {
+                link.addEventListener("click", function(e) {
+                    if (window.innerWidth <= 768 && isMenuOpen) {
+                        console.log('🖱️ Menu link clicked:', this.textContent);
+                        setTimeout(() => {
+                            closeMobileMenu();
+                        }, 200);
+                    }
+                });
+            });
+            
+            // Window resize
+            window.addEventListener("resize", function() {
+                if (window.innerWidth > 768 && isMenuOpen) {
+                    console.log('📱 Window resized, closing menu');
+                    closeMobileMenu();
+                }
+            });
+            
+            // Escape key to close
+            document.addEventListener("keydown", function(e) {
+                if (e.key === "Escape" && isMenuOpen) {
+                    console.log('⌨️ Escape key pressed');
+                    closeMobileMenu();
+                }
+            });
+            
+            console.log('✅ Mobile menu events attached successfully');
+        } else {
+            console.error('❌ Mobile menu elements not found!');
+        }
+        
+        // Highlight active menu
+        const currentPath = window.location.pathname;
+        const menuLinks = document.querySelectorAll(".header-nav-link");
+        
+        menuLinks.forEach((link) => {
+            const linkPath = new URL(link.href).pathname;
+            if (currentPath === linkPath ||
+                (currentPath === "/" && linkPath.includes("dashboard")) ||
+                (currentPath.includes("dashboard") && linkPath.includes("dashboard"))) {
+                link.classList.add("header-active");
+            }
+        });
+        
+        // Desktop hover effects
+        menuLinks.forEach(link => {
+            link.addEventListener("mouseenter", function() {
+                if (window.innerWidth > 768) {
+                    this.style.transform = "translateY(-2px)";
+                }
+            });
+            
+            link.addEventListener("mouseleave", function() {
+                if (window.innerWidth > 768) {
+                    this.style.transform = "translateY(0)";
+                }
+            });
+        });
+        
+        console.log('✅ Header component loaded successfully');
+        
+    }, 300);
+})();
+</script>
