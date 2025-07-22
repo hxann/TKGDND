@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Footer - Cơm Niêu Việt Nam</title>
+    <title>Cơm Niêu Việt Nam</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap & Font Awesome -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -28,105 +27,56 @@
         line-height: 1.6;
       }
 
-      /* Demo content */
-      .demo-content {
-        height: 100vh;
-        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #666;
-        font-size: 1.5rem;
+      /* ==== HEADER ==== */
+
+      .nav-menu-section {
+        flex-grow: 1;
+        text-align: right;
       }
 
-      /* Footer Top Section */
-      .footer-top {
-        background: linear-gradient(135deg, #d2b48c, #deb887);
-        padding: 40px 0;
-        position: relative;
+      .nav-menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .nav-menu li a {
+        text-decoration: none;
+        color: #333;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: background-color 0.2s, color 0.2s;
+      }
+
+      .nav-menu li a:hover {
+        background-color: #f2f2f2;
+      }
+
+      .nav-menu li a.active {
+        background-color: #ffcc00;
+        color: #000;
+        font-weight: bold;
+      }
+
+      /* ==== BANNER ==== */
+      .banner {
+        width: 100%;
+        max-height: 300px;
         overflow: hidden;
       }
 
-      .footer-top::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="pattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23000" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23pattern)"/></svg>');
-      }
-
-      .footer-top-content {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
-      /* Service Icon */
-      .service-icon {
-        width: 80px;
-        height: 80px;
-        background: #8b0000;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 24px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      }
-
-      .service-icon i {
-        margin: 0 3px;
-      }
-
-      /* Service Info */
-      .service-info {
-        text-align: center;
-        color: white;
-      }
-
-      .service-hours {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-      }
-
-      .contact-label {
-        font-size: 1rem;
-        margin-bottom: 5px;
-        opacity: 0.9;
-      }
-
-      .phone-number {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #333;
-        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
-      }
-
-      /* Food Image */
-      .food-showcase {
-        width: 300px;
-        height: 120px;
-      }
-
-      .food-showcase img {
+      .banner img {
         width: 100%;
-        height: 100%;
+        height: auto;
         object-fit: cover;
-        border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        display: block;
       }
 
-      /* Footer Main Section */
+      /* ==== FOOTER ==== */
       .footer-main {
         background: white;
         padding: 60px 0 40px;
@@ -142,7 +92,6 @@
         padding: 0 15px;
       }
 
-      /* Footer Logo Section */
       .footer-logo-section {
         display: flex;
         flex-direction: column;
@@ -156,26 +105,12 @@
         margin-bottom: 25px;
       }
 
-      .footer-logo-icon {
-        width: 50px;
-        height: 50px;
-        background: #d2691e;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 20px;
+      .footer-logo a img {
+        height: 80px;
+        width: auto;
+        display: block;
       }
 
-      .footer-logo-text {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #d2691e;
-        font-family: serif;
-      }
-
-      /* Social Icons */
       .social-icons {
         display: flex;
         gap: 15px;
@@ -198,10 +133,8 @@
       .social-icon:hover {
         background: #d2691e;
         transform: translateY(-2px);
-        color: white;
       }
 
-      /* Contact Info */
       .contact-info {
         color: #666;
         line-height: 1.8;
@@ -212,14 +145,15 @@
         font-weight: 600;
         font-size: 1.1rem;
         margin-bottom: 10px;
+        cursor: pointer;
       }
 
       .contact-info .address {
         font-size: 0.95rem;
       }
 
-      /* Menu Categories */
-      .menu-categories h4 {
+      .menu-categories h4,
+      .store-info h4 {
         color: #333;
         font-size: 1.3rem;
         font-weight: 600;
@@ -242,14 +176,6 @@
 
       .menu-link:hover {
         color: #d2691e;
-      }
-
-      /* Store Info */
-      .store-info h4 {
-        color: #333;
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 15px;
       }
 
       .store-hours {
@@ -278,59 +204,45 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        cursor: pointer;
       }
 
-      /* Responsive Design */
+      /* ==== RESPONSIVE ==== */
       @media (max-width: 992px) {
         .footer-content {
           grid-template-columns: 1fr 1fr;
-          gap: 40px;
-        }
-
-        .footer-top-content {
-          flex-direction: column;
-          gap: 30px;
-          text-align: center;
-        }
-
-        .food-showcase {
-          width: 250px;
-          height: 100px;
         }
       }
 
       @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .logo-section {
+          text-align: center;
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        .nav-menu {
+          flex-direction: column;
+          align-items: flex-end;
+        }
+
         .footer-content {
           grid-template-columns: 1fr;
-          gap: 30px;
         }
 
         .menu-grid {
           grid-template-columns: repeat(3, 1fr);
-          gap: 10px 15px;
-        }
-
-        .phone-number {
-          font-size: 1.5rem;
-        }
-
-        .service-hours {
-          font-size: 1.2rem;
-        }
-
-        .footer-main {
-          padding: 40px 0 30px;
         }
       }
 
       @media (max-width: 480px) {
-        .menu-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
         .footer-logo {
           flex-direction: column;
-          text-align: center;
           gap: 10px;
         }
 
@@ -338,59 +250,46 @@
           justify-content: center;
         }
 
-        .food-showcase {
-          width: 200px;
-          height: 80px;
+        .menu-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
       }
     </style>
   </head>
+
   <body>
-    <!-- Demo Content -->
+    <!-- HEADER -->
 
-    <!-- Footer -->
+    <!-- BANNER -->
+    <div class="banner">
+      <img src="/images/banner2.png" alt="Banner Nhà hàng" />
+    </div>
+
+    <!-- FOOTER -->
     <footer>
-      <!-- Footer Top Section -->
-       <img src="/images/banner2.png" alt="Cơm Niêu Đặc Sản">
-
-      <!-- Footer Main Section -->
       <div class="footer-main">
         <div class="footer-content">
-          <!-- Logo & Contact Section -->
+          <!-- Logo & Contact -->
           <div class="footer-logo-section">
             <div class="footer-logo">
-              <div class="">
-                
-              </div>
-              <div><img src="/images/logo.png"></div>
+              <a href="/"><img src="/images/logo.png" alt="Logo Cơm Niêu" /></a>
             </div>
-
             <div class="social-icons">
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-youtube"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-telegram"></i>
-              </a>
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
             </div>
-
             <div class="contact-info">
               <div class="hotline">Hotline: 094 1855 234</div>
               <div class="address">
-                <strong>Địa Chỉ Gần Sân Bay:</strong><br />
-                Số 234, Đường Cộng Hòa, Phường 12, Quận Tân Bình, Hồ Chí Minh
-                City
+                <strong>Địa chỉ gần sân bay:</strong><br />
+                Số 234, Đường Cộng Hòa, P.12, Q. Tân Bình, TP. HCM
               </div>
             </div>
           </div>
 
-          <!-- Menu Categories -->
+          <!-- Menu -->
           <div class="menu-categories">
             <h4>Danh Mục Menu</h4>
             <div class="menu-grid">
@@ -400,24 +299,24 @@
               <a href="#" class="menu-link">Món Canh</a>
               <a href="#" class="menu-link">Món Cơm</a>
               <a href="#" class="menu-link">Món Gà</a>
-              <a href="#" class="menu-link">Món Hải Sản</a>
-              <a href="#" class="menu-link">Món Heo</a>
-              <a href="#" class="menu-link">Món Lẩu</a>
-              <a href="#" class="menu-link">Món Rau</a>
+              <a href="#" class="menu-link">Hải Sản</a>
+              <a href="#" class="menu-link">Heo</a>
+              <a href="#" class="menu-link">Lẩu</a>
+              <a href="#" class="menu-link">Rau</a>
               <a href="#" class="menu-link">Thêm</a>
             </div>
           </div>
 
           <!-- Store Info -->
           <div class="store-info">
-            <div class="store-hours">Mở Cửa: 10h - 22h (24/7)</div>
+            <div class="store-hours">Mở cửa: 10h - 22h (24/7)</div>
             <div class="store-description">
-              Không gian thoáng mát với thiết kế mộc mạc.
+              Không gian thoáng mát, thiết kế mộc mạc và gần gũi.
             </div>
             <div class="store-map">
               <img
                 src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=300&h=120&fit=crop"
-                alt="Bản đồ vị trí"
+                alt="Bản đồ"
               />
             </div>
           </div>
@@ -425,119 +324,54 @@
       </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <!-- JS -->
     <script>
-      // Phone number click to call
-      document
-        .querySelector(".phone-number")
-        .addEventListener("click", function () {
-          window.location.href = "tel:0941855234";
-        });
+      // Active menu item theo URL hiện tại
+      const currentPath = window.location.pathname;
+      document.querySelectorAll(".nav-menu a").forEach(link => {
+        if (link.getAttribute("href") === currentPath) {
+          link.classList.add("active");
+        }
+      });
 
-      // Hotline click to call
-      document.querySelector(".hotline").addEventListener("click", function () {
+      // Hotline click
+      document.querySelector(".hotline").addEventListener("click", () => {
         window.location.href = "tel:0941855234";
       });
 
-      // Social media links
-      document.querySelectorAll(".social-icon").forEach((icon) => {
-        icon.addEventListener("click", function (e) {
-          e.preventDefault();
-          const platform = this.querySelector("i").classList[1].split("-")[1];
-          console.log(`Opening ${platform} page`);
-          // Here you would add actual social media links
-        });
-      });
-
-      // Menu links
-      document.querySelectorAll(".menu-link").forEach((link) => {
-        link.addEventListener("click", function (e) {
-          e.preventDefault();
-          const category = this.textContent;
-          console.log(`Navigate to ${category} menu`);
-          // Here you would add navigation logic
-        });
-      });
-
-      // Map click
-      document
-        .querySelector(".store-map")
-        .addEventListener("click", function () {
-          // Open Google Maps or show location modal
-          console.log("Opening map location");
-        });
-
-      // Add smooth scroll to top functionality
+      // Scroll to top button
       const scrollToTop = () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       };
 
-      // Add floating scroll to top button
       const createScrollButton = () => {
         const button = document.createElement("button");
         button.innerHTML = '<i class="fas fa-arrow-up"></i>';
         button.style.cssText = `
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                width: 50px;
-                height: 50px;
-                background: #D2691E;
-                color: white;
-                border: none;
-                border-radius: 50%;
-                cursor: pointer;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                z-index: 1000;
-                opacity: 0;
-                transition: all 0.3s ease;
-            `;
-
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          width: 50px;
+          height: 50px;
+          background: #D2691E;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+          z-index: 1000;
+          opacity: 0;
+          transition: all 0.3s ease;
+        `;
         button.addEventListener("click", scrollToTop);
         document.body.appendChild(button);
 
-        // Show/hide button based on scroll position
         window.addEventListener("scroll", () => {
-          if (window.pageYOffset > 300) {
-            button.style.opacity = "1";
-          } else {
-            button.style.opacity = "0";
-          }
+          button.style.opacity = window.scrollY > 300 ? "1" : "0";
         });
       };
 
-      // Initialize scroll button
       createScrollButton();
-
-      // Add animation on scroll
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver(function (entries) {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-          }
-        });
-      }, observerOptions);
-
-      // Observe footer elements
-      document
-        .querySelectorAll(".footer-logo-section, .menu-categories, .store-info")
-        .forEach((el) => {
-          el.style.opacity = "0";
-          el.style.transform = "translateY(30px)";
-          el.style.transition = "all 0.6s ease";
-          observer.observe(el);
-        });
     </script>
   </body>
 </html>

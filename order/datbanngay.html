@@ -1,600 +1,777 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đặt Bàn Ngay - Cơm Que Dương Bầu</title>
-    <link rel="stylesheet" href="../css/datbanngay.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/datbanngay.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">🍚</div>
-                    <div class="logo-text">
-                        <h1 class="logo-title">CƠM QUE DƯƠNG BẦU</h1>
-                        <p class="logo-subtitle">Hương vị truyền thống</p>
-                    </div>
-                </a>
-                
-                <nav class="nav">
-                    <a href="index.html" class="nav-link">Trang chủ</a>
-                    <a href="datbanngay.html" class="nav-link active">Đặt bàn</a>
-                    <a href="#menu" class="nav-link">Thực đơn</a>
-                    <a href="#about" class="nav-link">Giới thiệu</a>
-                    <a href="#contact" class="nav-link">Liên hệ</a>
-                </nav>
-                
-                <div class="header-hotline">
-                    📞 0123.456.789
-                </div>
-            </div>
-        </div>
-    </header>
+    <div id="header-placeholder"></div>
+
+    <script>
+      fetch("../dashboard/header.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
 
     <!-- Booking Section -->
     <section class="booking-section">
-        <div class="container">
-            <div class="booking-content">
-                <!-- Form Container -->
-                <div class="booking-form-container">
-                    <div class="form-header">
-                        <h2>🍽️ Đặt Bàn Ngay</h2>
-                        <p>Trải nghiệm hương vị truyền thống cùng gia đình</p>
-                    </div>
-
-                    <form id="bookingForm">
-                        <!-- Thông tin khách hàng -->
-                        <div class="form-section">
-                            <h3>👤 Thông tin khách hàng</h3>
-                            <p class="section-desc">Vui lòng cung cấp thông tin để chúng tôi liên hệ xác nhận</p>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="customerName">Họ và tên</label>
-                                    <input type="text" id="customerName" name="customerName" required placeholder="Nhập họ tên đầy đủ">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Số điện thoại</label>
-                                    <input type="tel" id="phone" name="phone" required placeholder="0123456789">
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">Email (tùy chọn)</label>
-                                <input type="email" id="email" name="email" placeholder="example@email.com">
-                            </div>
-                        </div>
-
-                        <!-- Thông tin đặt bàn -->
-                        <div class="form-section">
-                            <h3>📅 Thông tin đặt bàn</h3>
-                            <p class="section-desc">Chọn thời gian và số lượng khách</p>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="date">Ngày đặt bàn</label>
-                                    <input type="date" id="date" name="date" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="time">Giờ đặt bàn</label>
-                                    <select id="time" name="time" required>
-                                        <option value="">Chọn giờ</option>
-                                        <option value="11:00">11:00</option>
-                                        <option value="11:30">11:30</option>
-                                        <option value="12:00">12:00</option>
-                                        <option value="12:30">12:30</option>
-                                        <option value="13:00">13:00</option>
-                                        <option value="17:00">17:00</option>
-                                        <option value="17:30">17:30</option>
-                                        <option value="18:00">18:00</option>
-                                        <option value="18:30">18:30</option>
-                                        <option value="19:00">19:00</option>
-                                        <option value="19:30">19:30</option>
-                                        <option value="20:00">20:00</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="guests">Số lượng khách</label>
-                                    <select id="guests" name="guests" required>
-                                        <option value="">Chọn số khách</option>
-                                        <option value="1">1 người</option>
-                                        <option value="2">2 người</option>
-                                        <option value="3">3 người</option>
-                                        <option value="4">4 người</option>
-                                        <option value="5">5 người</option>
-                                        <option value="6">6 người</option>
-                                        <option value="7">7 người</option>
-                                        <option value="8">8 người</option>
-                                        <option value="9">9 người</option>
-                                        <option value="10">10+ người</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="tableType">Loại bàn</label>
-                                    <select id="tableType" name="tableType" required>
-                                        <option value="">Chọn loại bàn</option>
-                                        <option value="normal">Bàn thường</option>
-                                        <option value="vip">Bàn VIP</option>
-                                        <option value="private">Phòng riêng</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Đặt món trước -->
-                        <div class="form-section">
-                            <h3>🍽️ Đặt món trước (tùy chọn)</h3>
-                            <p class="section-desc">Bạn có thể đặt món trước để tiết kiệm thời gian</p>
-                            
-                            <!-- Menu Categories -->
-                            <div class="menu-categories">
-                                <button type="button" class="category-tab active" data-category="featured">Món nổi bật</button>
-                                <button type="button" class="category-tab" data-category="main">Món chính</button>
-                                <button type="button" class="category-tab" data-category="soup">Canh & Lẩu</button>
-                                <button type="button" class="category-tab" data-category="appetizer">Khai vị</button>
-                                <button type="button" class="category-tab" data-category="drink">Đồ uống</button>
-                            </div>
-
-                            <!-- Menu Items -->
-                            <div class="menu-items">
-                                <!-- Món nổi bật -->
-                                <div class="menu-category active" data-category="featured">
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish1" name="dishes" value="banh-khot">
-                                        <label for="dish1" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Bánh khọt nước dừa">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Bánh khọt nước dừa</h4>
-                                                    <p class="dish-price">145.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish2" name="dishes" value="banh-xeo">
-                                        <label for="dish2" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Bánh xèo">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Bánh xèo</h4>
-                                                    <p class="dish-price">145.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish3" name="dishes" value="banh-hoi">
-                                        <label for="dish3" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Bánh hỏi heo quay">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Bánh hỏi heo quay</h4>
-                                                    <p class="dish-price">189.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Món chính -->
-                                <div class="menu-category" data-category="main">
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish4" name="dishes" value="com-tam">
-                                        <label for="dish4" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Cơm tấm sườn nướng">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Cơm tấm sườn nướng</h4>
-                                                    <p class="dish-price">85.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish5" name="dishes" value="com-ga">
-                                        <label for="dish5" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Cơm gà nướng">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Cơm gà nướng</h4>
-                                                    <p class="dish-price">75.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish6" name="dishes" value="com-bo">
-                                        <label for="dish6" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Cơm bò lúc lắc">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Cơm bò lúc lắc</h4>
-                                                    <p class="dish-price">95.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish7" name="dishes" value="mi-quang">
-                                        <label for="dish7" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Mì Quảng">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Mì Quảng</h4>
-                                                    <p class="dish-price">65.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Canh & Lẩu -->
-                                <div class="menu-category" data-category="soup">
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish8" name="dishes" value="lau-thai">
-                                        <label for="dish8" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Lẩu Thái">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Lẩu Thái</h4>
-                                                    <p class="dish-price">350.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish9" name="dishes" value="lau-ca">
-                                        <label for="dish9" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Lẩu cá">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Lẩu cá</h4>
-                                                    <p class="dish-price">280.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish10" name="dishes" value="canh-chua">
-                                        <label for="dish10" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Canh chua cá">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Canh chua cá</h4>
-                                                    <p class="dish-price">120.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Khai vị -->
-                                <div class="menu-category" data-category="appetizer">
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish11" name="dishes" value="nem-nuong">
-                                        <label for="dish11" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Nem nướng">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Nem nướng</h4>
-                                                    <p class="dish-price">45.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish12" name="dishes" value="goi-cuon">
-                                        <label for="dish12" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Gỏi cuốn">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Gỏi cuốn</h4>
-                                                    <p class="dish-price">35.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish13" name="dishes" value="cha-ca">
-                                        <label for="dish13" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Chả cá">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Chả cá</h4>
-                                                    <p class="dish-price">55.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Đồ uống -->
-                                <div class="menu-category" data-category="drink">
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish14" name="dishes" value="tra-da">
-                                        <label for="dish14" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Trà đá">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Trà đá</h4>
-                                                    <p class="dish-price">10.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish15" name="dishes" value="nuoc-dua">
-                                        <label for="dish15" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Nước dừa">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Nước dừa</h4>
-                                                    <p class="dish-price">25.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish16" name="dishes" value="bia">
-                                        <label for="dish16" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Bia">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Bia</h4>
-                                                    <p class="dish-price">20.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="menu-item-card">
-                                        <input type="checkbox" id="dish17" name="dishes" value="nuoc-cam">
-                                        <label for="dish17" class="dish-label">
-                                            <img src="/placeholder.svg?height=80&width=80" alt="Nước cam">
-                                            <div class="dish-info">
-                                                <div>
-                                                    <h4>Nước cam</h4>
-                                                    <p class="dish-price">30.000đ</p>
-                                                </div>
-                                                <div class="quantity-control">
-                                                    <button type="button" class="qty-btn minus">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="qty-btn plus">+</button>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Order Summary -->
-                            <div class="order-summary">
-                                <h4>Tổng tiền: <span id="totalAmount">0đ</span></h4>
-                            </div>
-                        </div>
-
-                        <!-- Ghi chú -->
-                        <div class="form-section">
-                            <h3>📝 Ghi chú thêm</h3>
-                            <div class="form-group">
-                                <label for="notes">Yêu cầu đặc biệt</label>
-                                <textarea id="notes" name="notes" placeholder="Ví dụ: Không cay, ít dầu mỡ, bàn gần cửa sổ..."></textarea>
-                            </div>
-                        </div>
-
-                        <!-- Form Actions -->
-                        <div class="form-actions">
-                            <button type="submit" class="submit-btn">
-                                🎉 Đặt bàn ngay
-                            </button>
-                            <p class="form-note">
-                                Chúng tôi sẽ gọi lại xác nhận trong vòng 15 phút
-                            </p>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Booking Info Sidebar -->
-                <div class="booking-info">
-                    <div class="info-card">
-                        <h3>⏰ Giờ phục vụ</h3>
-                        <p><strong>Sáng:</strong> 11:00 - 14:00</p>
-                        <p><strong>Chiều:</strong> 17:00 - 22:00</p>
-                        <p><strong>Nghỉ:</strong> Chủ nhật hàng tuần</p>
-                    </div>
-
-                    <div class="info-card">
-                        <h3>💰 Chính sách giá</h3>
-                        <ul>
-                            <li>Bàn thường: Miễn phí</li>
-                            <li>Bàn VIP: +50.000đ</li>
-                            <li>Phòng riêng: +100.000đ</li>
-                            <li>Trẻ em dưới 5 tuổi: Miễn phí</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-card">
-                        <h3>📞 Liên hệ</h3>
-                        <p><strong>Hotline:</strong> 0123.456.789</p>
-                        <p><strong>Địa chỉ:</strong> 123 Đường ABC, Quận XYZ, TP.HCM</p>
-                        <p><strong>Email:</strong> info@comqueduongbau.com</p>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="booking-content">
+          <!-- Form Container -->
+          <div class="booking-form-container">
+            <div class="form-header">
+              <h2>🍽️ Đặt Bàn Ngay</h2>
+              <p>Trải nghiệm hương vị truyền thống cùng gia đình</p>
             </div>
+
+            <form id="bookingForm">
+              <!-- Thông tin khách hàng -->
+              <div class="form-section">
+                <h3>👤 Thông tin khách hàng</h3>
+                <p class="section-desc">
+                  Vui lòng cung cấp thông tin để chúng tôi liên hệ xác nhận
+                </p>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="customerName">Họ và tên</label>
+                    <input
+                      type="text"
+                      id="customerName"
+                      name="customerName"
+                      required
+                      placeholder="Nhập họ tên đầy đủ"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      required
+                      placeholder="0123456789"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email (tùy chọn)</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="example@email.com"
+                  />
+                </div>
+              </div>
+
+              <!-- Thông tin đặt bàn -->
+              <div class="form-section">
+                <h3>📅 Thông tin đặt bàn</h3>
+                <p class="section-desc">Chọn thời gian và số lượng khách</p>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="date">Ngày đặt bàn</label>
+                    <input type="date" id="date" name="date" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="time">Giờ đặt bàn</label>
+                    <select id="time" name="time" required>
+                      <option value="">Chọn giờ</option>
+                      <option value="11:00">11:00</option>
+                      <option value="11:30">11:30</option>
+                      <option value="12:00">12:00</option>
+                      <option value="12:30">12:30</option>
+                      <option value="13:00">13:00</option>
+                      <option value="17:00">17:00</option>
+                      <option value="17:30">17:30</option>
+                      <option value="18:00">18:00</option>
+                      <option value="18:30">18:30</option>
+                      <option value="19:00">19:00</option>
+                      <option value="19:30">19:30</option>
+                      <option value="20:00">20:00</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="guests">Số lượng khách</label>
+                    <select id="guests" name="guests" required>
+                      <option value="">Chọn số khách</option>
+                      <option value="1">1 người</option>
+                      <option value="2">2 người</option>
+                      <option value="3">3 người</option>
+                      <option value="4">4 người</option>
+                      <option value="5">5 người</option>
+                      <option value="6">6 người</option>
+                      <option value="7">7 người</option>
+                      <option value="8">8 người</option>
+                      <option value="9">9 người</option>
+                      <option value="10">10+ người</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="tableType">Loại bàn</label>
+                    <select id="tableType" name="tableType" required>
+                      <option value="">Chọn loại bàn</option>
+                      <option value="normal">Bàn thường</option>
+                      <option value="vip">Bàn VIP</option>
+                      <option value="private">Phòng riêng</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Đặt món trước -->
+              <div class="form-section">
+                <h3>🍽️ Đặt món trước (tùy chọn)</h3>
+                <p class="section-desc">
+                  Bạn có thể đặt món trước để tiết kiệm thời gian
+                </p>
+
+                <!-- Menu Categories -->
+                <div class="menu-categories">
+                  <button
+                    type="button"
+                    class="category-tab active"
+                    data-category="featured"
+                  >
+                    Món nổi bật
+                  </button>
+                  <button
+                    type="button"
+                    class="category-tab"
+                    data-category="main"
+                  >
+                    Món chính
+                  </button>
+                  <button
+                    type="button"
+                    class="category-tab"
+                    data-category="soup"
+                  >
+                    Canh & Lẩu
+                  </button>
+                  <button
+                    type="button"
+                    class="category-tab"
+                    data-category="appetizer"
+                  >
+                    Khai vị
+                  </button>
+                  <button
+                    type="button"
+                    class="category-tab"
+                    data-category="drink"
+                  >
+                    Đồ uống
+                  </button>
+                </div>
+
+                <!-- Menu Items -->
+                <div class="menu-items">
+                  <!-- Món nổi bật -->
+                  <div class="menu-category active" data-category="featured">
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish1"
+                        name="dishes"
+                        value="banh-khot"
+                      />
+                      <label for="dish1" class="dish-label">
+                       <img src="/images/2.png" alt="Chả Mực Hạ Long">
+                        <div class="dish-info">
+                          <div>
+                            <h4>Chả Mực Hạ Long</h4>
+                            <p class="dish-price">145.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish2"
+                        name="dishes"
+                        value="banh-xeo"
+                      />
+                      <label for="dish2" class="dish-label">
+                        <img src="/images/cakho.png" alt="Cá Kho Làng Vũ Đại">
+                        <div class="dish-info">
+                          <div>
+                            <h4>Cá Kho Làng Vũ Đại</h4>
+                            <p class="dish-price">145.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish3"
+                        name="dishes"
+                        value="banh-hoi"
+                      />
+                      <label for="dish3" class="dish-label">
+                        <img src="/images/1.png" alt="Ba Rọi Heo Gia Lai luộc">
+                        <div class="dish-info">
+                          <div>
+                            <h4>Thịt heo luộc</h4>
+                            <p class="dish-price">189.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Món chính -->
+                  <div class="menu-category" data-category="main">
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish4"
+                        name="dishes"
+                        value="com-tam"
+                      />
+                      <label for="dish4" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Cơm tấm sườn nướng"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Cơm tấm sườn nướng</h4>
+                            <p class="dish-price">85.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish5"
+                        name="dishes"
+                        value="com-ga"
+                      />
+                      <label for="dish5" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Cơm gà nướng"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Cơm gà nướng</h4>
+                            <p class="dish-price">75.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish6"
+                        name="dishes"
+                        value="com-bo"
+                      />
+                      <label for="dish6" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Cơm bò lúc lắc"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Cơm bò lúc lắc</h4>
+                            <p class="dish-price">95.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish7"
+                        name="dishes"
+                        value="mi-quang"
+                      />
+                      <label for="dish7" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Mì Quảng"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Mì Quảng</h4>
+                            <p class="dish-price">65.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Canh & Lẩu -->
+                  <div class="menu-category" data-category="soup">
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish8"
+                        name="dishes"
+                        value="lau-thai"
+                      />
+                      <label for="dish8" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Lẩu Thái"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Lẩu Thái</h4>
+                            <p class="dish-price">350.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish9"
+                        name="dishes"
+                        value="lau-ca"
+                      />
+                      <label for="dish9" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Lẩu cá"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Lẩu cá</h4>
+                            <p class="dish-price">280.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish10"
+                        name="dishes"
+                        value="canh-chua"
+                      />
+                      <label for="dish10" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Canh chua cá"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Canh chua cá</h4>
+                            <p class="dish-price">120.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Khai vị -->
+                  <div class="menu-category" data-category="appetizer">
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish11"
+                        name="dishes"
+                        value="nem-nuong"
+                      />
+                      <label for="dish11" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Nem nướng"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Nem nướng</h4>
+                            <p class="dish-price">45.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish12"
+                        name="dishes"
+                        value="goi-cuon"
+                      />
+                      <label for="dish12" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Gỏi cuốn"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Gỏi cuốn</h4>
+                            <p class="dish-price">35.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish13"
+                        name="dishes"
+                        value="cha-ca"
+                      />
+                      <label for="dish13" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Chả cá"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Chả cá</h4>
+                            <p class="dish-price">55.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Đồ uống -->
+                  <div class="menu-category" data-category="drink">
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish14"
+                        name="dishes"
+                        value="tra-da"
+                      />
+                      <label for="dish14" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Trà đá"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Trà đá</h4>
+                            <p class="dish-price">10.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish15"
+                        name="dishes"
+                        value="nuoc-dua"
+                      />
+                      <label for="dish15" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Nước dừa"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Nước dừa</h4>
+                            <p class="dish-price">25.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish16"
+                        name="dishes"
+                        value="bia"
+                      />
+                      <label for="dish16" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Bia"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Bia</h4>
+                            <p class="dish-price">20.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <input
+                        type="checkbox"
+                        id="dish17"
+                        name="dishes"
+                        value="nuoc-cam"
+                      />
+                      <label for="dish17" class="dish-label">
+                        <img
+                          src="/placeholder.svg?height=80&width=80"
+                          alt="Nước cam"
+                        />
+                        <div class="dish-info">
+                          <div>
+                            <h4>Nước cam</h4>
+                            <p class="dish-price">30.000đ</p>
+                          </div>
+                          <div class="quantity-control">
+                            <button type="button" class="qty-btn minus">
+                              -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button type="button" class="qty-btn plus">
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                  <h4>Tổng tiền: <span id="totalAmount">0đ</span></h4>
+                </div>
+              </div>
+
+              <!-- Ghi chú -->
+              <div class="form-section">
+                <h3>📝 Ghi chú thêm</h3>
+                <div class="form-group">
+                  <label for="notes">Yêu cầu đặc biệt</label>
+                  <textarea
+                    id="notes"
+                    name="notes"
+                    placeholder="Ví dụ: Không cay, ít dầu mỡ, bàn gần cửa sổ..."
+                  ></textarea>
+                </div>
+              </div>
+
+              <!-- Form Actions -->
+              <div class="form-actions">
+                <button type="submit" class="submit-btn">
+                  🎉 Đặt bàn ngay
+                </button>
+                <p class="form-note">
+                  Chúng tôi sẽ gọi lại xác nhận trong vòng 15 phút
+                </p>
+              </div>
+            </form>
+          </div>
+
+          <!-- Booking Info Sidebar -->
+          <div class="booking-info">
+            <div class="info-card">
+              <h3>⏰ Giờ phục vụ</h3>
+              <p><strong>Sáng:</strong> 11:00 - 14:00</p>
+              <p><strong>Chiều:</strong> 17:00 - 22:00</p>
+              <p><strong>Nghỉ:</strong> Chủ nhật hàng tuần</p>
+            </div>
+
+            <div class="info-card">
+              <h3>💰 Chính sách giá</h3>
+              <ul>
+                <li>Bàn thường: Miễn phí</li>
+                <li>Bàn VIP: +50.000đ</li>
+                <li>Phòng riêng: +100.000đ</li>
+                <li>Trẻ em dưới 5 tuổi: Miễn phí</li>
+              </ul>
+            </div>
+
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-overlay">
-            <div class="container">
-                <div class="footer-slogan">
-                    <h3>"Hương vị truyền thống - Tình cảm gia đình"</h3>
-                </div>
-                
-                <div class="footer-content">
-                    <div class="restaurant-info">
-                        <h4>THÔNG TIN LIÊN HỆ</h4>
-                        <div class="contact-item">
-                            <span class="icon">📍</span>
-                            <span>123 Đường ABC, Phường XYZ, Quận 1, TP.HCM</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="icon">📞</span>
-                            <span>Hotline: 0123.456.789</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="icon">⏰</span>
-                            <span>Giờ mở cửa: 11:00 - 22:00 (Nghỉ Chủ nhật)</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="icon">✉️</span>
-                            <span>Email: info@comqueduongbau.com</span>
-                        </div>
-                    </div>
-                    
-                    <div class="video-frame">
-                        <div class="video-header">
-                            <div class="fb-logo">f</div>
-                            <div class="video-title">
-                                <h5>Cơm Que Dương Bầu</h5>
-                                <p>2 giờ trước • 👥 Công khai</p>
-                            </div>
-                            <div class="video-actions">
-                                <span>👍 125</span>
-                                <span>💬 23</span>
-                                <span>↗️ 12</span>
-                            </div>
-                        </div>
-                        <div class="video-content">
-                            <img src="/placeholder.svg?height=180&width=320" alt="Video thumbnail" class="video-thumbnail">
-                            <div class="play-button">▶</div>
-                        </div>
-                    </div>
-                    
-                    <div class="footer-social">
-                        <div class="zalo-widget">
-                            <a href="https://zalo.me/0123456789" class="zalo-button" target="_blank">
-                                <div class="zalo-icon">Z</div>
-                                <span>Chat Zalo</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="footer-bottom">
-                    <p>&copy; 2024 Cơm Que Dương Bầu. Tất cả quyền được bảo lưu.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+     <div> 
+    <div id="footer-placeholder"></div>
+    <script>
+      fetch("/dashboard/footer.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("footer-placeholder").innerHTML = data;
+        });
+    </script>
+    </div>
 
     <!-- Floating Zalo Contact -->
     <div class="zalo-contact">
-        <a href="https://zalo.me/0123456789" class="zalo-float" target="_blank">
-            <span class="zalo-text">Zalo</span>
-        </a>
+      <a href="https://zalo.me/0123456789" class="zalo-float" target="_blank">
+        <span class="zalo-text">Zalo</span>
+      </a>
     </div>
 
     <script src="./assets/js/datbanngay.js"></script>
-</body>
+  </body>
 </html>
