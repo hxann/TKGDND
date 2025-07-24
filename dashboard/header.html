@@ -1,4 +1,4 @@
-<!-- Header Component - No HTML/HEAD/BODY tags -->
+<!-- Header Component - Optimized CSS Only Mobile Menu -->
 
 <!-- Top Search Bar -->
 <div class="header-top-search-bar">
@@ -44,31 +44,37 @@
     </div>
 </header>
 
-<!-- Navigation Menu -->
+<!-- Navigation Menu with Optimized Mobile Toggle -->
 <nav class="header-nav-menu-section">
     <div class="header-nav-container">
-        <!-- Mobile Menu Toggle -->
-        <button class="header-nav-toggle" id="mobileMenuToggle">
-            <i class="fas fa-bars"></i>
-            <span class="header-toggle-text">MENU</span>
-        </button>
+        <!-- Hidden Checkbox for Mobile Menu Toggle -->
+        <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-checkbox">
         
-        <!-- Navigation Menu - Always centered on desktop -->
-        <ul class="header-nav-menu" id="mobileNavMenu">
+        <!-- Compact Mobile Menu Toggle Button -->
+        <label for="mobile-menu-toggle" class="mobile-menu-button">
+            <span class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </label>
+        
+        <!-- Navigation Menu -->
+        <ul class="header-nav-menu">
             <li><a href="/dashboard/index.html" class="header-nav-link">NHÀ HÀNG CƠM NIÊU</a></li>
             <li><a href="/dashboard/index.html" class="header-nav-link">GIỚI THIỆU</a></li>
             <li><a href="/menu/index.html" class="header-nav-link">MENU</a></li>
-            <li><a href="/news/index.html" class="header-nav-link">TIN TỨC</a></li>
+            <li><a href="/post/newpost.html" class="header-nav-link">TIN TỨC</a></li>
             <li><a href="/contact/index.html" class="header-nav-link">LIÊN HỆ</a></li>
         </ul>
+        
+        <!-- Mobile Overlay -->
+        <label for="mobile-menu-toggle" class="mobile-overlay"></label>
     </div>
 </nav>
 
-<!-- Mobile Menu Overlay -->
-<div class="header-nav-overlay" id="mobileMenuOverlay"></div>
-
 <style>
-/* Header Component Styles - All prefixed with 'header-' to avoid conflicts */
+/* Header Component Styles */
 
 /* Top Search Bar */
 .header-top-search-bar {
@@ -250,7 +256,6 @@
     display: inline-block;
     width: 200px;
     text-align: center;
-    justify-content: flex-end;
 }
 
 .header-menu-btn:hover {
@@ -260,7 +265,7 @@
     box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
 }
 
-/* Navigation Menu - ALWAYS CENTERED */
+/* Navigation Menu */
 .header-nav-menu-section {
     background: white;
     padding: 15px 0;
@@ -278,6 +283,75 @@
     align-items: center;
 }
 
+/* Hide the checkbox */
+.mobile-menu-checkbox {
+    display: none;
+}
+
+/* Compact Mobile Menu Button - Hidden by default */
+.mobile-menu-button {
+    display: none;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    background: #dc3545;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.mobile-menu-button:hover {
+    background: #c82333;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+/* Hamburger Icon */
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    width: 20px;
+    height: 16px;
+    position: relative;
+}
+
+.hamburger-icon span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: white;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.hamburger-icon span:nth-child(1) {
+    margin-bottom: 5px;
+}
+
+.hamburger-icon span:nth-child(2) {
+    margin-bottom: 5px;
+}
+
+/* Transform hamburger to X when menu is open */
+.mobile-menu-checkbox:checked + .mobile-menu-button .hamburger-icon span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-checkbox:checked + .mobile-menu-button .hamburger-icon span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.mobile-menu-checkbox:checked + .mobile-menu-button .hamburger-icon span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Desktop Navigation Menu */
 .header-nav-menu {
     display: flex;
     justify-content: center;
@@ -344,60 +418,17 @@
     display: none;
 }
 
-/* Mobile Menu Toggle */
-.header-nav-toggle {
-    background: #dc3545;
-    border: none;
-    color: white;
-    cursor: pointer;
+/* Mobile Overlay - Hidden by default */
+.mobile-overlay {
     display: none;
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1001;
-    transition: all 0.3s ease;
-    padding: 10px 15px;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
-    box-shadow: 0 2px 10px rgba(220, 53, 69, 0.3);
-}
-
-.header-nav-toggle:hover {
-    background: #c82333;
-    transform: translateY(-50%) scale(1.05);
-    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
-}
-
-.header-nav-toggle i {
-    margin-right: 8px;
-    font-size: 18px;
-}
-
-.header-toggle-text {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-/* Mobile Menu Overlay */
-.header-nav-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.6);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
+    background: rgba(0,0,0,0.7);
     z-index: 999;
-}
-
-.header-nav-overlay.header-active {
-    opacity: 1;
-    visibility: visible;
+    cursor: pointer;
 }
 
 /* Responsive Design */
@@ -437,46 +468,54 @@
         width: auto;
     }
     
-    /* Navigation Menu Mobile - SLIDE FROM LEFT */
-    .header-nav-toggle {
-        display: flex !important;
-        align-items: center;
-        left: 15px;
+    /* Show Compact Mobile Menu Button */
+    .mobile-menu-button {
+        display: block !important;
     }
     
+    /* Transform Desktop Menu to Mobile Dropdown */
     .header-nav-menu {
         position: fixed !important;
         top: 0;
         left: -100%;
-        width: 280px;
+        width: 320px;
         height: 100vh;
         background: white;
         flex-direction: column;
         gap: 0;
-        padding: 80px 0 20px 0;
-        box-shadow: 2px 0 15px rgba(0,0,0,0.1);
-        transform: translateX(0);
-        opacity: 1;
-        visibility: visible;
-        transition: left 0.4s ease;
+        padding: 80px 0 30px 0;
+        box-shadow: 4px 0 25px rgba(0,0,0,0.2);
+        transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         z-index: 1000;
         overflow-y: auto;
     }
     
-    .header-nav-menu.header-active {
+    /* Show menu when checkbox is checked */
+    .mobile-menu-checkbox:checked ~ .header-nav-menu {
         left: 0 !important;
+    }
+    
+    /* Show overlay when checkbox is checked */
+    .mobile-menu-checkbox:checked ~ .mobile-overlay {
+        display: block !important;
+    }
+    
+    /* Prevent body scroll when menu is open */
+    .mobile-menu-checkbox:checked ~ * {
+        overflow: hidden;
     }
     
     .header-nav-menu li {
         width: 100%;
         text-align: left;
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f5f5f5;
         opacity: 0;
-        transform: translateX(-30px);
-        transition: all 0.3s ease;
+        transform: translateX(-50px);
+        transition: all 0.4s ease;
     }
     
-    .header-nav-menu.header-active li {
+    /* Animate menu items when menu is open */
+    .mobile-menu-checkbox:checked ~ .header-nav-menu li {
         opacity: 1;
         transform: translateX(0);
     }
@@ -486,27 +525,27 @@
     }
     
     .header-nav-link {
-        padding: 18px 25px !important;
+        padding: 22px 30px !important;
         display: block;
         width: 100%;
         border-radius: 0;
         margin: 0;
-        font-size: 16px !important;
+        font-size: 17px !important;
         font-weight: 500;
         transition: all 0.3s ease;
-        border-left: 4px solid transparent;
+        border-left: 5px solid transparent;
     }
     
     .header-nav-link:hover {
-        background: rgba(210, 105, 30, 0.1) !important;
+        background: linear-gradient(90deg, rgba(210, 105, 30, 0.1) 0%, rgba(210, 105, 30, 0.05) 100%) !important;
         color: #d2691e !important;
         transform: none !important;
         border-left-color: #d2691e;
-        padding-left: 30px !important;
+        padding-left: 35px !important;
     }
     
     .header-nav-link.header-active {
-        background: rgba(220, 53, 69, 0.1);
+        background: linear-gradient(90deg, rgba(220, 53, 69, 0.1) 0%, rgba(220, 53, 69, 0.05) 100%);
         color: #dc3545 !important;
         border-left-color: #dc3545;
         font-weight: 600;
@@ -516,28 +555,9 @@
         display: none;
     }
     
-    /* Close button in mobile menu */
+    /* Remove the duplicate close button - only hamburger transforms to X */
     .header-nav-menu::before {
-        content: '✕';
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 24px;
-        color: #dc3545;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background: rgba(220, 53, 69, 0.1);
-        transition: all 0.3s ease;
-    }
-    
-    .header-nav-menu::before:hover {
-        background: rgba(220, 53, 69, 0.2);
-        transform: scale(1.1);
+        display: none;
     }
     
     /* Search bar mobile */
@@ -585,229 +605,105 @@
     }
     
     .header-nav-menu {
-        width: 260px;
+        width: 300px;
     }
     
-    .header-nav-toggle {
-        padding: 8px 12px;
-        font-size: 14px;
+    .mobile-menu-button {
+        padding: 6px;
     }
     
-    .header-nav-toggle i {
-        font-size: 16px;
-        margin-right: 6px;
-    }
-    
-    .header-toggle-text {
-        font-size: 12px;
+    .hamburger-icon {
+        width: 18px;
+        height: 14px;
     }
 }
 
-/* Animation for mobile menu items */
-.header-nav-menu.header-active li:nth-child(1) { 
+/* Animation delays for menu items */
+.mobile-menu-checkbox:checked ~ .header-nav-menu li:nth-child(1) { 
     transition-delay: 0.1s; 
 }
-.header-nav-menu.header-active li:nth-child(2) { 
+.mobile-menu-checkbox:checked ~ .header-nav-menu li:nth-child(2) { 
+    transition-delay: 0.15s; 
+}
+.mobile-menu-checkbox:checked ~ .header-nav-menu li:nth-child(3) { 
     transition-delay: 0.2s; 
 }
-.header-nav-menu.header-active li:nth-child(3) { 
+.mobile-menu-checkbox:checked ~ .header-nav-menu li:nth-child(4) { 
+    transition-delay: 0.25s; 
+}
+.mobile-menu-checkbox:checked ~ .header-nav-menu li:nth-child(5) { 
     transition-delay: 0.3s; 
-}
-.header-nav-menu.header-active li:nth-child(4) { 
-    transition-delay: 0.4s; 
-}
-.header-nav-menu.header-active li:nth-child(5) { 
-    transition-delay: 0.5s; 
 }
 </style>
 
 <script>
-// Header Component JavaScript - FIXED Mobile Menu with Left Slide
-(function() {
-    'use strict';
+// Minimal JavaScript for additional functionality
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Header loaded with optimized mobile menu');
     
-    // Wait for component to be loaded
-    setTimeout(function() {
-        console.log('🚀 Loading header component...');
-        
-        // Search functionality
-        const searchBtn = document.querySelector(".header-search-btn");
-        const searchInput = document.querySelector(".header-search-input");
-        const categoryDropdown = document.querySelector(".header-category-dropdown");
-        
-        if (searchBtn && searchInput && categoryDropdown) {
-            searchBtn.addEventListener("click", function () {
-                const searchValue = searchInput.value;
-                const category = categoryDropdown.value;
+    // Search functionality
+    const searchBtn = document.querySelector(".header-search-btn");
+    const searchInput = document.querySelector(".header-search-input");
+    const categoryDropdown = document.querySelector(".header-category-dropdown");
+    
+    if (searchBtn && searchInput && categoryDropdown) {
+        searchBtn.addEventListener("click", function () {
+            const searchValue = searchInput.value;
+            const category = categoryDropdown.value;
+            
+            if (searchValue.trim()) {
+                const icon = this.querySelector("i");
+                const originalClass = icon.className;
+                icon.className = "fas fa-spinner fa-spin";
                 
-                if (searchValue.trim()) {
-                    const icon = this.querySelector("i");
-                    const originalClass = icon.className;
-                    icon.className = "fas fa-spinner fa-spin";
-                    
-                    setTimeout(() => {
-                        icon.className = originalClass;
-                        alert(`🔍 Tìm kiếm: "${searchValue}" trong danh mục: "${category}"`);
-                    }, 1000);
-                } else {
-                    alert("⚠️ Vui lòng nhập từ khóa tìm kiếm");
-                }
-            });
-            
-            searchInput.addEventListener("keypress", function (e) {
-                if (e.key === "Enter") {
-                    searchBtn.click();
-                }
-            });
-        }
-        
-        // Phone click to call
-        const reservationPhone = document.querySelector(".header-reservation-phone");
-        if (reservationPhone) {
-            reservationPhone.addEventListener("click", function () {
-                window.location.href = "tel:0941855234";
-            });
-        }
-        
-        // Mobile menu toggle - COMPLETELY REWRITTEN
-        const navToggle = document.getElementById("mobileMenuToggle");
-        const navMenu = document.getElementById("mobileNavMenu");
-        const navOverlay = document.getElementById("mobileMenuOverlay");
-        
-        console.log('🔍 Mobile menu elements:', {
-            toggle: !!navToggle,
-            menu: !!navMenu,
-            overlay: !!navOverlay
-        });
-        
-        if (navToggle && navMenu && navOverlay) {
-            let isMenuOpen = false;
-            
-            function openMobileMenu() {
-                console.log('📱 Opening mobile menu...');
-                isMenuOpen = true;
-                navMenu.classList.add("header-active");
-                navOverlay.classList.add("header-active");
-                document.body.style.overflow = "hidden";
-                
-                // Change toggle button
-                const icon = navToggle.querySelector("i");
-                const text = navToggle.querySelector(".header-toggle-text");
-                icon.className = "fas fa-times";
-                text.textContent = "ĐÓNG";
-                
-                console.log('✅ Menu opened');
-            }
-            
-            function closeMobileMenu() {
-                console.log('📱 Closing mobile menu...');
-                isMenuOpen = false;
-                navMenu.classList.remove("header-active");
-                navOverlay.classList.remove("header-active");
-                document.body.style.overflow = "";
-                
-                // Reset toggle button
-                const icon = navToggle.querySelector("i");
-                const text = navToggle.querySelector(".header-toggle-text");
-                icon.className = "fas fa-bars";
-                text.textContent = "MENU";
-                
-                console.log('❌ Menu closed');
-            }
-            
-            function toggleMobileMenu() {
-                if (isMenuOpen) {
-                    closeMobileMenu();
-                } else {
-                    openMobileMenu();
-                }
-            }
-            
-            // Toggle button click
-            navToggle.addEventListener("click", function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('🖱️ Toggle button clicked');
-                toggleMobileMenu();
-            });
-            
-            // Overlay click to close
-            navOverlay.addEventListener("click", function(e) {
-                console.log('🖱️ Overlay clicked');
-                closeMobileMenu();
-            });
-            
-            // Close button (X) in menu
-            navMenu.addEventListener("click", function(e) {
-                if (e.target === navMenu && e.clientX > navMenu.offsetWidth - 60 && e.clientY < 60) {
-                    console.log('🖱️ Close button clicked');
-                    closeMobileMenu();
-                }
-            });
-            
-            // Menu item clicks
-            document.querySelectorAll(".header-nav-link").forEach(link => {
-                link.addEventListener("click", function(e) {
-                    if (window.innerWidth <= 768 && isMenuOpen) {
-                        console.log('🖱️ Menu link clicked:', this.textContent);
-                        setTimeout(() => {
-                            closeMobileMenu();
-                        }, 200);
-                    }
-                });
-            });
-            
-            // Window resize
-            window.addEventListener("resize", function() {
-                if (window.innerWidth > 768 && isMenuOpen) {
-                    console.log('📱 Window resized, closing menu');
-                    closeMobileMenu();
-                }
-            });
-            
-            // Escape key to close
-            document.addEventListener("keydown", function(e) {
-                if (e.key === "Escape" && isMenuOpen) {
-                    console.log('⌨️ Escape key pressed');
-                    closeMobileMenu();
-                }
-            });
-            
-            console.log('✅ Mobile menu events attached successfully');
-        } else {
-            console.error('❌ Mobile menu elements not found!');
-        }
-        
-        // Highlight active menu
-        const currentPath = window.location.pathname;
-        const menuLinks = document.querySelectorAll(".header-nav-link");
-        
-        menuLinks.forEach((link) => {
-            const linkPath = new URL(link.href).pathname;
-            if (currentPath === linkPath ||
-                (currentPath === "/" && linkPath.includes("dashboard")) ||
-                (currentPath.includes("dashboard") && linkPath.includes("dashboard"))) {
-                link.classList.add("header-active");
+                setTimeout(() => {
+                    icon.className = originalClass;
+                    alert(`🔍 Tìm kiếm: "${searchValue}" trong danh mục: "${category}"`);
+                }, 1000);
+            } else {
+                alert("⚠️ Vui lòng nhập từ khóa tìm kiếm");
             }
         });
         
-        // Desktop hover effects
-        menuLinks.forEach(link => {
-            link.addEventListener("mouseenter", function() {
-                if (window.innerWidth > 768) {
-                    this.style.transform = "translateY(-2px)";
-                }
-            });
-            
-            link.addEventListener("mouseleave", function() {
-                if (window.innerWidth > 768) {
-                    this.style.transform = "translateY(0)";
-                }
-            });
+        searchInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                searchBtn.click();
+            }
         });
-        
-        console.log('✅ Header component loaded successfully');
-        
-    }, 300);
-})();
+    }
+    
+    // Phone click to call
+    const reservationPhone = document.querySelector(".header-reservation-phone");
+    if (reservationPhone) {
+        reservationPhone.addEventListener("click", function () {
+            window.location.href = "tel:0941855234";
+        });
+    }
+    
+    // Close mobile menu when clicking menu items
+    const menuLinks = document.querySelectorAll('.header-nav-link');
+    const mobileCheckbox = document.getElementById('mobile-menu-toggle');
+    
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768 && mobileCheckbox && mobileCheckbox.checked) {
+                // Close menu by unchecking the checkbox
+                mobileCheckbox.checked = false;
+            }
+        });
+    });
+    
+    // Highlight active menu
+    const currentPath = window.location.pathname;
+    menuLinks.forEach((link) => {
+        const linkPath = new URL(link.href).pathname;
+        if (currentPath === linkPath ||
+            (currentPath === "/" && linkPath.includes("dashboard")) ||
+            (currentPath.includes("dashboard") && linkPath.includes("dashboard"))) {
+            link.classList.add("header-active");
+        }
+    });
+    
+    console.log('✅ Header ready - Optimized mobile menu active');
+});
 </script>
