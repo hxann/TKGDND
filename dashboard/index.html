@@ -1,765 +1,898 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cơm Niêu Việt Nam</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+      }
+      /* Header Placeholder */
+      #header-placeholder {
+        min-height: 60px;
+        background: #f8f9fa;
+      }
+
+      /* Full Screen Banner Section */
+      .banner-section {
+        width: 100%;
+        height: 100vh;
+        min-height: 500px;
+        max-height: 800px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .banner-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .banner-image:hover {
+        transform: scale(1.02);
+      }
+
+      /* Banner Overlay (optional) */
+      .banner-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .banner-section:hover .banner-overlay {
+        opacity: 1;
+      }
+
+      /* Hero Promotion Section */
+      .hero-promotion {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 60px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-promotion::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23000" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23000" opacity="0.02"/><circle cx="50" cy="10" r="1" fill="%23000" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+      .hero-row {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-text {
+        flex: 1;
+        text-align: center;
+      }
+      .hero-image {
+        flex: 1;
+        text-align: center;
+      }
+      /* Text Styling */
+      .hero-title {
+        font-size: 2.5rem;
+        color: #666;
+        margin-bottom: 10px;
+        font-weight: 400;
+        line-height: 1.2;
+      }
+      .price-highlight {
+        color: #dc3545;
+        font-weight: 700;
+      }
+      .hero-subtitle {
+        font-size: 1.3rem;
+        color: #666;
+        margin-bottom: 40px;
+        font-weight: 400;
+      }
+      .restaurant-name {
+        font-size: 1.8rem;
+        color: #dc3545;
+        font-weight: 700;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+      }
+      .restaurant-description {
+        font-size: 1rem;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 40px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .menu-btn {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 15px 35px;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+      }
+      .menu-btn:hover {
+        background: #c82333;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+      }
+      /* Hero Image */
+      .hero-food-image {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+      .hero-food-image:hover {
+        transform: scale(1.02);
+      }
+      /* Service Info Section */
+      .service-info {
+        background: white;
+        padding: 40px 0;
+        border-top: 1px solid #e9ecef;
+      }
+      .service-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+      .service-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .service-icon {
+        width: 60px;
+        height: 60px;
+        background: #d2691e;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .service-icon:hover {
+        transform: scale(1.1);
+        background: #b8860b;
+      }
+      .service-text h4 {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
+      .service-text p {
+        color: #666;
+        font-size: 14px;
+        margin: 0;
+      }
+      .service-highlight {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #333;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+      .combo-info {
+        text-align: right;
+      }
+      .combo-title {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+      .combo-subtitle {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      .combo-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #333;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+      .combo-price:hover {
+        color: #dc3545;
+      }
+      /* News Section */
+      .news-section {
+        padding: 60px 0;
+        background-color: #f8f9fa;
+      }
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      .section-title h2 {
+        color: #d32f2f;
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+      .section-title p {
+        color: #666;
+        font-size: 16px;
+      }
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 15px;
+      }
+      .news-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+      .news-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+      .news-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .news-content {
+        padding: 20px;
+      }
+      .news-content h4 {
+        color: #d32f2f;
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+      .news-date {
+        color: #999;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+      .news-content p {
+        color: #666;
+        line-height: 1.6;
+      }
+      /* Loading placeholder */
+      .loading-placeholder {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+        font-style: italic;
+        background: #f8f9fa;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+      .error-placeholder {
+        text-align: center;
+        padding: 40px;
+        color: #dc3545;
+        background: #fff5f5;
+        border: 1px solid #fecaca;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+      .success-placeholder {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Responsive Design for Banner */
+      @media (max-width: 1200px) {
+        .banner-section {
+          height: 80vh;
+          min-height: 400px;
+          max-height: 600px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .banner-section {
+          height: 60vh;
+          min-height: 300px;
+          max-height: 500px;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        /* Header Placeholder */
-        #header-placeholder {
-            min-height: 60px;
-            background: #f8f9fa;
-        }
-
-        /* Hero Promotion Section */
-        .hero-promotion {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 60px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-promotion::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23000" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23000" opacity="0.02"/><circle cx="50" cy="10" r="1" fill="%23000" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
+        .banner-overlay {
+          font-size: 1.5rem;
+          padding: 0 20px;
+          text-align: center;
         }
 
         .hero-row {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-            position: relative;
-            z-index: 2;
+          flex-direction: column;
+          gap: 30px;
+          text-align: center;
         }
-
-        .hero-text {
-            flex: 1;
-            text-align: center;
-        }
-
-        .hero-image {
-            flex: 1;
-            text-align: center;
-        }
-
-        /* Text Styling */
         .hero-title {
-            font-size: 2.5rem;
-            color: #666;
-            margin-bottom: 10px;
-            font-weight: 400;
-            line-height: 1.2;
+          font-size: 2rem;
         }
-
-        .price-highlight {
-            color: #dc3545;
-            font-weight: 700;
-        }
-
         .hero-subtitle {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 40px;
-            font-weight: 400;
+          font-size: 1.1rem;
         }
-
         .restaurant-name {
-            font-size: 1.8rem;
-            color: #dc3545;
-            font-weight: 700;
-            margin-bottom: 25px;
-            text-transform: uppercase;
+          font-size: 1.5rem;
         }
-
         .restaurant-description {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+          font-size: 0.9rem;
         }
-
-        .menu-btn {
-            background: #dc3545;
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
-        }
-
-        .menu-btn:hover {
-            background: #c82333;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
-        }
-
-        /* Hero Image */
-        .hero-food-image {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .hero-food-image:hover {
-            transform: scale(1.02);
-        }
-
-        /* Service Info Section */
-        .service-info {
-            background: white;
-            padding: 40px 0;
-            border-top: 1px solid #e9ecef;
-        }
-
         .service-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
+          flex-direction: column;
+          gap: 30px;
+          text-align: center;
         }
-
-        .service-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: #d2691e;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .service-icon:hover {
-            transform: scale(1.1);
-            background: #b8860b;
-        }
-
-        .service-text h4 {
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-
-        .service-text p {
-            color: #666;
-            font-size: 14px;
-            margin: 0;
-        }
-
         .service-highlight {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #333;
-            animation: pulse 2s infinite;
+          font-size: 2.5rem;
         }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
         .combo-info {
-            text-align: right;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .banner-section {
+          height: 50vh;
+          min-height: 250px;
+          max-height: 400px;
         }
 
-        .combo-title {
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 5px;
+        .banner-overlay {
+          font-size: 1.2rem;
         }
 
-        .combo-subtitle {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 10px;
+        .hero-promotion {
+          padding: 40px 0;
         }
+        .hero-title {
+          font-size: 1.8rem;
+        }
+        .restaurant-name {
+          font-size: 1.3rem;
+        }
+        .menu-btn {
+          padding: 12px 25px;
+          font-size: 14px;
+        }
+        .service-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 20px;
+        }
+        .service-highlight {
+          font-size: 2rem;
+        }
+      }
 
-        .combo-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #333;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
+      /* Banner Loading Animation */
+      .banner-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
+        color: #666;
+        font-size: 1.2rem;
+      }
 
-        .combo-price:hover {
-            color: #dc3545;
-        }
+      .banner-loading i {
+        margin-right: 10px;
+        animation: spin 1s linear infinite;
+      }
 
-        /* News Section */
-        .news-section {
-            padding: 60px 0;
-            background-color: #f8f9fa;
-        }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+      /* Banner Fade In Animation */
+      .banner-image {
+        opacity: 0;
+        animation: fadeIn 1s ease-in-out forwards;
+      }
 
-        .section-title h2 {
-            color: #d32f2f;
-            font-size: 36px;
-            margin-bottom: 10px;
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(1.1);
         }
-
-        .section-title p {
-            color: #666;
-            font-size: 16px;
+        to {
+          opacity: 1;
+          transform: scale(1);
         }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 15px;
-        }
-
-        .news-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .news-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .news-content {
-            padding: 20px;
-        }
-
-        .news-content h4 {
-            color: #d32f2f;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-
-        .news-date {
-            color: #999;
-            font-size: 12px;
-            margin-bottom: 10px;
-        }
-
-        .news-content p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Loading placeholder */
-        .loading-placeholder {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-style: italic;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
-        .error-placeholder {
-            text-align: center;
-            padding: 40px;
-            color: #dc3545;
-            background: #fff5f5;
-            border: 1px solid #fecaca;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
-        .success-placeholder {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-row {
-                flex-direction: column;
-                gap: 30px;
-                text-align: center;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .restaurant-name {
-                font-size: 1.5rem;
-            }
-            
-            .restaurant-description {
-                font-size: 0.9rem;
-            }
-            
-            .service-row {
-                flex-direction: column;
-                gap: 30px;
-                text-align: center;
-            }
-            
-            .service-highlight {
-                font-size: 2.5rem;
-            }
-            
-            .combo-info {
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-promotion {
-                padding: 40px 0;
-            }
-            
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            
-            .restaurant-name {
-                font-size: 1.3rem;
-            }
-            
-            .menu-btn {
-                padding: 12px 25px;
-                font-size: 14px;
-            }
-            
-            .service-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-            }
-            
-            .service-highlight {
-                font-size: 2rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header Placeholder -->
     <div id="header-placeholder">
-        <div class="loading-placeholder">
-            <i class="fas fa-spinner fa-spin"></i> Đang tải header...
-        </div>
+      <div class="loading-placeholder">
+        <i class="fas fa-spinner fa-spin"></i> Đang tải header...
+      </div>
     </div>
+
+    <!-- Full Screen Banner Section -->
+    <section class="banner-section">
+      <img
+        src="/images/banner.png"
+        alt="Nhà Hàng Cơm Niêu Việt Nam - Banner"
+        class="banner-image"
+        loading="lazy"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <!-- Fallback content if image fails to load -->
+      <div class="banner-loading" style="display: none;">
+        <i class="fas fa-image"></i>
+        <span>Không thể tải ảnh banner</span>
+      </div>
+      <!-- Optional overlay with text -->
+      <div class="banner-overlay">
+        <div>
+          <div>Nhà Hàng Cơm Niêu Việt Nam</div>
+          <div style="font-size: 1.2rem; font-weight: normal; margin-top: 10px;">
+            Hương vị truyền thống - Phong cách hiện đại
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Hero Promotion Section -->
     <section class="hero-promotion">
-        <div class="hero-row">
-            <!-- Left Content -->
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    Cá Kho Làng Vũ Đại
-                    <span class="price-highlight">CHỈ TỪ 250.000đ</span>
-                </h1>
-                <p class="hero-subtitle">& Hương vị trọn tình quê!</p>
-                <h2 class="restaurant-name">Nhà Hàng Cơm Niêu Việt Nam</h2>
-                <p class="restaurant-description">
-                    Nhà hàng Cơm Niêu còn là địa điểm lý tưởng cho các buổi tiệc, họp
-                    mặt, hay các sự kiện đặc biệt khác. Chúng tôi tự tin rằng sự chuyên
-                    nghiệp và tận tâm của đội ngũ nhân viên cùng không gian sang trọng
-                    sẽ làm hài lòng mọi khách hàng.
-                </p>
-                <button class="menu-btn">MENU HÔM NAY</button>
-            </div>
-            <!-- Right Image -->
-            <div class="hero-image">
-                <img
-                    src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&h=400&fit=crop&crop=center"
-                    alt="Cơm Niêu Truyền Thống"
-                    class="hero-food-image"
-                />
-            </div>
+      <div class="hero-row">
+        <!-- Left Content -->
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Cá Kho Làng Vũ Đại
+            <span class="price-highlight">CHỈ TỪ 250.000đ</span>
+          </h1>
+          <p class="hero-subtitle">& Hương vị trọn tình quê!</p>
+          <h2 class="restaurant-name">Nhà Hàng Cơm Niêu Việt Nam</h2>
+          <p class="restaurant-description">
+            Nhà hàng Cơm Niêu còn là địa điểm lý tưởng cho các buổi tiệc, họp
+            mặt, hay các sự kiện đặc biệt khác. Chúng tôi tự tin rằng sự chuyên
+            nghiệp và tận tâm của đội ngũ nhân viên cùng không gian sang trọng
+            sẽ làm hài lòng mọi khách hàng.
+          </p>
+          <button class="menu-btn">MENU HÔM NAY</button>
         </div>
+        <!-- Right Image -->
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&h=400&fit=crop&crop=center"
+            alt="Cơm Niêu Truyền Thống"
+            class="hero-food-image"
+          />
+        </div>
+      </div>
     </section>
 
     <!-- Service Info Section -->
     <section class="service-info">
-        <div class="service-row">
-            <!-- Left Service Info -->
-            <div class="service-item">
-                <div class="service-icon">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <div class="service-text">
-                    <h4>Gọi Ngay Đặt Bàn:</h4>
-                    <p>Phục vụ: 10h - 22h</p>
-                </div>
-            </div>
-            <!-- Center Highlight -->
-            <div class="service-highlight">24/7</div>
-            <!-- Right Combo Info -->
-            <div class="combo-info">
-                <div class="service-item">
-                    <div class="service-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <div class="service-text">
-                        <h4 class="combo-title">Combo Trọn Vị</h4>
-                        <p class="combo-subtitle">Đến ngày hôm nay !</p>
-                        <div class="combo-price">Chỉ từ 500.000đ</div>
-                    </div>
-                </div>
-            </div>
+      <div class="service-row">
+        <!-- Left Service Info -->
+        <div class="service-item">
+          <div class="service-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="service-text">
+            <h4>Gọi Ngay Đặt Bàn:</h4>
+            <p>Phục vụ: 10h - 22h</p>
+          </div>
         </div>
+        <!-- Center Highlight -->
+        <div class="service-highlight">24/7</div>
+        <!-- Right Combo Info -->
+        <div class="combo-info">
+          <div class="service-item">
+            <div class="service-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div class="service-text">
+              <h4 class="combo-title">Combo Trọn Vị</h4>
+              <p class="combo-subtitle">Đến ngày hôm nay !</p>
+              <div class="combo-price">Chỉ từ 500.000đ</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Dynamic Content Placeholders -->
     <div id="favorites-placeholder">
-        <div class="loading-placeholder">
-            <i class="fas fa-spinner fa-spin"></i> Đang tải menu yêu thích...
-        </div>
+      <div class="loading-placeholder">
+        <i class="fas fa-spinner fa-spin"></i> Đang tải menu yêu thích...
+      </div>
     </div>
-
     <div id="test-placeholder">
-        <div class="loading-placeholder">
-            <i class="fas fa-spinner fa-spin"></i> Đang tải nội dung test...
-        </div>
+      <div class="loading-placeholder">
+        <i class="fas fa-spinner fa-spin"></i> Đang tải nội dung test...
+      </div>
     </div>
 
     <!-- News Section -->
     <section class="news-section">
-        <div class="section-title">
-            <h2>TIN TỨC MỚI NHẤT</h2>
-            <p>Cập nhật thông tin và khuyến mãi</p>
+      <div class="section-title">
+        <h2>TIN TỨC MỚI NHẤT</h2>
+        <p>Cập nhật thông tin và khuyến mãi</p>
+      </div>
+      <div class="news-grid">
+        <div class="news-card">
+          <img
+            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=250&fit=crop"
+            alt="Tin tức"
+          />
+          <div class="news-content">
+            <div class="news-date">15/12/2024</div>
+            <h4>Khai Trương Chi Nhánh Mới</h4>
+            <p>
+              Chúng tôi vui mừng thông báo khai trương chi nhánh thứ 3 tại quận
+              7, TP.HCM với không gian rộng rãi hơn.
+            </p>
+          </div>
         </div>
-        <div class="news-grid">
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=250&fit=crop" alt="Tin tức" />
-                <div class="news-content">
-                    <div class="news-date">15/12/2024</div>
-                    <h4>Khai Trương Chi Nhánh Mới</h4>
-                    <p>Chúng tôi vui mừng thông báo khai trương chi nhánh thứ 3 tại quận 7, TP.HCM với không gian rộng rãi hơn.</p>
-                </div>
-            </div>
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=250&fit=crop" alt="Tin tức" />
-                <div class="news-content">
-                    <div class="news-date">10/12/2024</div>
-                    <h4>Menu Mùa Đông Đặc Biệt</h4>
-                    <p>Khám phá menu mùa đông với những món ăn ấm áp như lẩu cá, bún riêu cua và các món nướng.</p>
-                </div>
-            </div>
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=250&fit=crop" alt="Tin tức" />
-                <div class="news-content">
-                    <div class="news-date">05/12/2024</div>
-                    <h4>Khuyến Mãi Tháng 12</h4>
-                    <p>Giảm giá 20% cho tất cả món ăn vào thứ 2 và thứ 3 hàng tuần trong tháng 12.</p>
-                </div>
-            </div>
+        <div class="news-card">
+          <img
+            src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=250&fit=crop"
+            alt="Tin tức"
+          />
+          <div class="news-content">
+            <div class="news-date">10/12/2024</div>
+            <h4>Menu Mùa Đông Đặc Biệt</h4>
+            <p>
+              Khám phá menu mùa đông với những món ăn ấm áp như lẩu cá, bún riêu
+              cua và các món nướng.
+            </p>
+          </div>
         </div>
+        <div class="news-card">
+          <img
+            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=250&fit=crop"
+            alt="Tin tức"
+          />
+          <div class="news-content">
+            <div class="news-date">05/12/2024</div>
+            <h4>Khuyến Mãi Tháng 12</h4>
+            <p>
+              Giảm giá 20% cho tất cả món ăn vào thứ 2 và thứ 3 hàng tuần trong
+              tháng 12.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer Placeholder -->
     <div id="footer-placeholder">
-        <div class="loading-placeholder">
-            <i class="fas fa-spinner fa-spin"></i> Đang tải footer...
-        </div>
+      <div class="loading-placeholder">
+        <i class="fas fa-spinner fa-spin"></i> Đang tải footer...
+      </div>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
-        // Advanced fetch manager to handle multiple requests without conflicts
-        class FetchManager {
-            constructor() {
-                this.activeRequests = new Map();
-                this.requestQueue = [];
-                this.maxConcurrent = 3;
+      // Advanced fetch manager to handle multiple requests without conflicts
+      class FetchManager {
+        constructor() {
+          this.activeRequests = new Map();
+          this.requestQueue = [];
+          this.maxConcurrent = 3;
+        }
+        async safeFetch(url, placeholderId, options = {}) {
+          const requestId = `${url}-${placeholderId}`;
+          // Cancel existing request for same placeholder
+          if (this.activeRequests.has(requestId)) {
+            this.activeRequests.get(requestId).abort();
+          }
+          const controller = new AbortController();
+          this.activeRequests.set(requestId, controller);
+          const placeholder = document.getElementById(placeholderId);
+          if (!placeholder) {
+            console.warn(`Placeholder ${placeholderId} not found`);
+            return;
+          }
+          try {
+            // Show loading state
+            this.showLoading(placeholder, options.loadingText || "Đang tải...");
+            const response = await fetch(url, {
+              signal: controller.signal,
+              ...options.fetchOptions,
+            });
+            if (!response.ok) {
+              throw new Error(
+                `HTTP ${response.status}: ${response.statusText}`
+              );
             }
-
-            async safeFetch(url, placeholderId, options = {}) {
-                const requestId = `${url}-${placeholderId}`;
-                
-                // Cancel existing request for same placeholder
-                if (this.activeRequests.has(requestId)) {
-                    this.activeRequests.get(requestId).abort();
-                }
-
-                const controller = new AbortController();
-                this.activeRequests.set(requestId, controller);
-
-                const placeholder = document.getElementById(placeholderId);
-                if (!placeholder) {
-                    console.warn(`Placeholder ${placeholderId} not found`);
-                    return;
-                }
-
-                try {
-                    // Show loading state
-                    this.showLoading(placeholder, options.loadingText || 'Đang tải...');
-
-                    const response = await fetch(url, {
-                        signal: controller.signal,
-                        ...options.fetchOptions
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                    }
-
-                    const data = await response.text();
-                    
-                    // Success - show content
-                    this.showSuccess(placeholder, data);
-                    
-                    console.log(`✅ Successfully loaded: ${url}`);
-
-                } catch (error) {
-                    if (error.name === 'AbortError') {
-                        console.log(`🚫 Request cancelled: ${url}`);
-                        return;
-                    }
-
-                    console.error(`❌ Failed to load ${url}:`, error.message);
-                    this.showError(placeholder, url, error.message, options.retryCallback);
-
-                } finally {
-                    this.activeRequests.delete(requestId);
-                }
+            const data = await response.text();
+            // Success - show content
+            this.showSuccess(placeholder, data);
+            console.log(`✅ Successfully loaded: ${url}`);
+          } catch (error) {
+            if (error.name === "AbortError") {
+              console.log(`🚫 Request cancelled: ${url}`);
+              return;
             }
-
-            showLoading(placeholder, text) {
-                placeholder.innerHTML = `
+            console.error(`❌ Failed to load ${url}:`, error.message);
+            this.showError(
+              placeholder,
+              url,
+              error.message,
+              options.retryCallback
+            );
+          } finally {
+            this.activeRequests.delete(requestId);
+          }
+        }
+        showLoading(placeholder, text) {
+          placeholder.innerHTML = `
                     <div class="loading-placeholder">
                         <i class="fas fa-spinner fa-spin"></i> ${text}
                     </div>
                 `;
-            }
-
-            showSuccess(placeholder, content) {
-                placeholder.innerHTML = content;
-                placeholder.classList.add('success-placeholder');
-            }
-
-            showError(placeholder, url, errorMessage, retryCallback) {
-                const fileName = url.split('/').pop();
-                placeholder.innerHTML = `
+        }
+        showSuccess(placeholder, content) {
+          placeholder.innerHTML = content;
+          placeholder.classList.add("success-placeholder");
+        }
+        showError(placeholder, url, errorMessage, retryCallback) {
+          const fileName = url.split("/").pop();
+          placeholder.innerHTML = `
                     <div class="error-placeholder">
                         <i class="fas fa-exclamation-triangle"></i>
                         <h5>Không thể tải ${fileName}</h5>
                         <p>Lỗi: ${errorMessage}</p>
-                        ${retryCallback ? `<button class="btn btn-sm btn-outline-danger" onclick="(${retryCallback})()">Thử lại</button>` : ''}
+                        ${
+                          retryCallback
+                            ? `<button class="btn btn-sm btn-outline-danger" onclick="(${retryCallback})()">Thử lại</button>`
+                            : ""
+                        }
                     </div>
                 `;
-            }
-
-            // Load multiple files with staggered timing to avoid conflicts
-            async loadMultiple(requests) {
-                const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-                
-                for (let i = 0; i < requests.length; i++) {
-                    const { url, placeholderId, options } = requests[i];
-                    
-                    // Stagger requests by 200ms to avoid conflicts
-                    if (i > 0) {
-                        await delay(200);
-                    }
-                    
-                    this.safeFetch(url, placeholderId, options);
-                }
-            }
         }
-
-        // Initialize fetch manager
-        const fetchManager = new FetchManager();
-
-        // Define all fetch requests
-        const fetchRequests = [
-            {
-                url: '../dashboard/header.html',
-                placeholderId: 'header-placeholder',
-                options: {
-                    loadingText: 'Đang tải header...',
-                    retryCallback: () => fetchManager.safeFetch('../dashboard/header.html', 'header-placeholder')
-                }
-            },
-            {
-                url: 'favorites.html',
-                placeholderId: 'favorites-placeholder',
-                options: {
-                    loadingText: 'Đang tải menu yêu thích...',
-                    retryCallback: () => fetchManager.safeFetch('favorites.html', 'favorites-placeholder')
-                }
-            },
-            {
-                url: 'Test.html',
-                placeholderId: 'test-placeholder',
-                options: {
-                    loadingText: 'Đang tải nội dung test...',
-                    retryCallback: () => fetchManager.safeFetch('Test.html', 'test-placeholder')
-                }
-            },
-            {
-                url: '../dashboard/footer.html',
-                placeholderId: 'footer-placeholder',
-                options: {
-                    loadingText: 'Đang tải footer...',
-                    retryCallback: () => fetchManager.safeFetch('../dashboard/footer.html', 'footer-placeholder')
-                }
+        // Load multiple files with staggered timing to avoid conflicts
+        async loadMultiple(requests) {
+          const delay = (ms) =>
+            new Promise((resolve) => setTimeout(resolve, ms));
+          for (let i = 0; i < requests.length; i++) {
+            const { url, placeholderId, options } = requests[i];
+            // Stagger requests by 200ms to avoid conflicts
+            if (i > 0) {
+              await delay(200);
             }
-        ];
-
-        // Load all content when DOM is ready
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 Starting to load external content...');
-            
-            // Load all files with staggered timing
-            fetchManager.loadMultiple(fetchRequests);
-
-            // Initialize other functionality after a short delay
-            setTimeout(initializePageFunctionality, 500);
+            this.safeFetch(url, placeholderId, options);
+          }
+        }
+      }
+      // Initialize fetch manager
+      const fetchManager = new FetchManager();
+      // Define all fetch requests
+      const fetchRequests = [
+        {
+          url: "../dashboard/header.html",
+          placeholderId: "header-placeholder",
+          options: {
+            loadingText: "Đang tải header...",
+            retryCallback: () =>
+              fetchManager.safeFetch(
+                "../dashboard/header.html",
+                "header-placeholder"
+              ),
+          },
+        },
+        {
+          url: "favorites.html",
+          placeholderId: "favorites-placeholder",
+          options: {
+            loadingText: "Đang tải menu yêu thích...",
+            retryCallback: () =>
+              fetchManager.safeFetch("favorites.html", "favorites-placeholder"),
+          },
+        },
+        {
+          url: "Test.html",
+          placeholderId: "test-placeholder",
+          options: {
+            loadingText: "Đang tải nội dung test...",
+            retryCallback: () =>
+              fetchManager.safeFetch("Test.html", "test-placeholder"),
+          },
+        },
+        {
+          url: "../dashboard/footer.html",
+          placeholderId: "footer-placeholder",
+          options: {
+            loadingText: "Đang tải footer...",
+            retryCallback: () =>
+              fetchManager.safeFetch(
+                "../dashboard/footer.html",
+                "footer-placeholder"
+              ),
+          },
+        },
+      ];
+      // Load all content when DOM is ready
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("🚀 Starting to load external content...");
+        // Load all files with staggered timing
+        fetchManager.loadMultiple(fetchRequests);
+        // Initialize other functionality after a short delay
+        setTimeout(initializePageFunctionality, 500);
+      });
+      function initializePageFunctionality() {
+        // Button click handlers
+        const menuBtn = document.querySelector(".menu-btn");
+        if (menuBtn) {
+          menuBtn.addEventListener("click", function () {
+            alert("Mở menu hôm nay!");
+          });
+        }
+        // Phone click to call
+        document.querySelectorAll(".service-icon").forEach((icon) => {
+          if (icon.querySelector(".fa-phone")) {
+            icon.addEventListener("click", function () {
+              window.location.href = "tel:0941855234";
+            });
+          }
         });
-
-        function initializePageFunctionality() {
-            // Button click handlers
-            const menuBtn = document.querySelector('.menu-btn');
-            if (menuBtn) {
-                menuBtn.addEventListener('click', function() {
-                    alert('Mở menu hôm nay!');
-                });
-            }
-
-            // Phone click to call
-            document.querySelectorAll('.service-icon').forEach(icon => {
-                if (icon.querySelector('.fa-phone')) {
-                    icon.addEventListener('click', function() {
-                        window.location.href = 'tel:0941855234';
-                    });
-                }
-            });
-
-            // Combo price click
-            const comboPrice = document.querySelector('.combo-price');
-            if (comboPrice) {
-                comboPrice.addEventListener('click', function() {
-                    alert('🍽️ Combo Trọn Vị - Chỉ từ 500.000đ\n\n📞 Liên hệ ngay: 094 1855 234');
-                });
-            }
-
-            // Initialize scroll animations
-            initializeScrollAnimations();
-
-            // Initialize floating image animation
-            initializeFloatingAnimation();
+        // Combo price click
+        const comboPrice = document.querySelector(".combo-price");
+        if (comboPrice) {
+          comboPrice.addEventListener("click", function () {
+            alert(
+              "🍽️ Combo Trọn Vị - Chỉ từ 500.000đ\n\n📞 Liên hệ ngay: 094 1855 234"
+            );
+          });
         }
+        // Initialize scroll animations
+        initializeScrollAnimations();
+        // Initialize floating image animation
+        initializeFloatingAnimation();
+        // Initialize banner functionality
+        initializeBannerFunctionality();
+      }
 
-        function initializeScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px',
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Observe elements for animation
-            document.querySelectorAll('.hero-text, .hero-image, .service-item, .news-card').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'all 0.6s ease';
-                observer.observe(el);
-            });
-        }
-
-        function initializeFloatingAnimation() {
-            const foodImage = document.querySelector('.hero-food-image');
-            if (foodImage) {
-                setInterval(() => {
-                    foodImage.style.transform = 'translateY(-5px) scale(1.02)';
-                    setTimeout(() => {
-                        foodImage.style.transform = 'translateY(0px) scale(1.02)';
-                    }, 1000);
-                }, 3000);
+      function initializeBannerFunctionality() {
+        const bannerImage = document.querySelector('.banner-image');
+        const bannerSection = document.querySelector('.banner-section');
+        
+        if (bannerImage && bannerSection) {
+          // Add loading state
+          bannerImage.addEventListener('load', function() {
+            console.log('✅ Banner image loaded successfully');
+          });
+          
+          // Add error handling
+          bannerImage.addEventListener('error', function() {
+            console.error('❌ Failed to load banner image');
+            const fallback = bannerSection.querySelector('.banner-loading');
+            if (fallback) {
+              fallback.style.display = 'flex';
             }
+          });
+          
+          // Add click functionality to banner
+          bannerSection.addEventListener('click', function() {
+            console.log('🖱️ Banner clicked');
+            // You can add navigation or modal functionality here
+          });
         }
+      }
 
-        // Global retry function for failed requests
-        window.retryFetch = function(url, placeholderId) {
-            fetchManager.safeFetch(url, placeholderId);
+      function initializeScrollAnimations() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
         };
-
-        // Debug function to check fetch status
-        window.checkFetchStatus = function() {
-            console.log('Active requests:', fetchManager.activeRequests.size);
-            console.log('Request queue:', fetchManager.requestQueue.length);
-        };
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        }, observerOptions);
+        // Observe elements for animation
+        document
+          .querySelectorAll(
+            ".hero-text, .hero-image, .service-item, .news-card"
+          )
+          .forEach((el) => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            el.style.transition = "all 0.6s ease";
+            observer.observe(el);
+          });
+      }
+      function initializeFloatingAnimation() {
+        const foodImage = document.querySelector(".hero-food-image");
+        if (foodImage) {
+          setInterval(() => {
+            foodImage.style.transform = "translateY(-5px) scale(1.02)";
+            setTimeout(() => {
+              foodImage.style.transform = "translateY(0px) scale(1.02)";
+            }, 1000);
+          }, 3000);
+        }
+      }
+      // Global retry function for failed requests
+      window.retryFetch = function (url, placeholderId) {
+        fetchManager.safeFetch(url, placeholderId);
+      };
+      // Debug function to check fetch status
+      window.checkFetchStatus = function () {
+        console.log("Active requests:", fetchManager.activeRequests.size);
+        console.log("Request queue:", fetchManager.requestQueue.length);
+      };
     </script>
-</body>
+  </body>
 </html>
